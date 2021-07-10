@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 372266871}
   - component: {fileID: 372266870}
   m_Layer: 0
-  m_Name: GameManaer
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -293,7 +293,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5197d20aaa5ab584386bcc4d44e74460, type: 2}
   playerPrefab: {fileID: 0}
   BodyBallPrefabs:
-  - {fileID: 0}
+  - {fileID: 6053399034426835573, guid: b0b46003b8cc0a7439bccbcaf8d366f0, type: 3}
+  - {fileID: 6053399034426835573, guid: b0b46003b8cc0a7439bccbcaf8d366f0, type: 3}
+  - {fileID: 6053399034426835573, guid: b0b46003b8cc0a7439bccbcaf8d366f0, type: 3}
 --- !u!4 &372266871
 Transform:
   m_ObjectHideFlags: 0
