@@ -2065,6 +2065,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 390045763477080564, guid: b87a0b4d99e9b63448200ef08ccf825c, type: 3}
+      propertyPath: BodyBallPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 6858622782132766188, guid: ab857a0ba67f78d4d9250b94ffe18160, type: 3}
+    - target: {fileID: 390045763477080564, guid: b87a0b4d99e9b63448200ef08ccf825c, type: 3}
+      propertyPath: BodyBallPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 6858622782132766188, guid: ab857a0ba67f78d4d9250b94ffe18160, type: 3}
+    - target: {fileID: 390045763477080564, guid: b87a0b4d99e9b63448200ef08ccf825c, type: 3}
+      propertyPath: BodyBallPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 6858622782132766188, guid: ab857a0ba67f78d4d9250b94ffe18160, type: 3}
     - target: {fileID: 390045763477080565, guid: b87a0b4d99e9b63448200ef08ccf825c, type: 3}
       propertyPath: m_RootOrder
       value: 5
