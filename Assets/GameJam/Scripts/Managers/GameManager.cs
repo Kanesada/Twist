@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
 	private bool timeFlag;
 	
 
+	
+
 	void OnEnable()
 	{
 		SceneManager.sceneLoaded += OnSceneLoaded;
