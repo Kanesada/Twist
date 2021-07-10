@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -42,9 +43,9 @@ public class GameManager : MonoBehaviour
 	public BodyBallControllerNew bodyBallController;
 
 	private bool timeFlag;
-	
 
-	
+	private List<EndingData> endingList = new List<EndingData>();
+
 
 	void OnEnable()
 	{
@@ -52,8 +53,10 @@ public class GameManager : MonoBehaviour
 
 		gamerData = new GamerData();
 		gamerData.Init();
-		//bodyBallController = new BodyBallController();
-		
+
+		LoadEngindData();
+		var endingCanBeSelectedList = GetEndingDatas();
+
 		print(levelDatas[0].levelNumber);
 		timeFlag = false;
 	}
@@ -120,38 +123,18 @@ public class GameManager : MonoBehaviour
 		// 播放音效
 	}
 
-	private void Update()
-    {
-		if(timeFlag == true)
-        {
-
-			totalTime = int.Parse(GameObject.Find("Canvas").GetComponent<UIManager>().text_time.text);
-		}
-		if (totalTime == 100)
-		{
-			//执行结束动画
-
-		}
 
 
-		//Test 代码
-		if (Input.GetKeyDown(KeyCode.R))
-		{
-			bodyBallController.GenerateBody(4);
-
-			GeneratePlayer(Vector3.one*5);
-		}
-		if (Input.GetKeyDown(KeyCode.T))
-		{
-			LoadEngindData();
-		}
+	// 当进入下一个关卡时调用，输入关卡名，以及所选择的结局
+	public void OnLevelUp(string sceneName,EndingData data)
+	{
+		gamerData.LevelUp();
+		gamerData.ChoosenEndings.Add(data.number);
+		SceneManager.LoadScene(sceneName);
 	}
 
 
-
-	private List<EndingData> endingList = new List<EndingData>();
-
-	public void LoadEngindData()
+	private void LoadEngindData()
 	{
 		endingList.Clear();
 		var data = Utils.ParseCSV("Ending", 1);
@@ -163,7 +146,9 @@ public class GameManager : MonoBehaviour
 			var list = new List<int>();
 			for (int i = 0; i < strs.Length; i++)
 			{
-				list.Add(int.Parse(strs[i]));
+				int needNumber = int.Parse(strs[i]); 
+				if (needNumber != 0)
+					list.Add(needNumber);
 			}
 			var endingData = new EndingData
 			{
@@ -174,21 +159,49 @@ public class GameManager : MonoBehaviour
 			};
 			endingList.Add(endingData);
 		}
-		
-		foreach(var ending in endingList)
-		{
-			print(ending.number);
-			print(ending.levelNeed);
-			print(ending.describe);
-		}
 	}
 
-	public List<EndingData> GetEndingDatas()
+	private List<EndingData> GetEndingDatas()
 	{
 		int level = gamerData.Level;
 		var choosenEndings = gamerData.ChoosenEndings;
 
-		return null;
+		var canBeSelectedEndingList = endingList.Where((data) =>
+		{
+			bool where = data.levelNeed == level;
+			if (where == false)
+				return false;
+			for (int i = 0; i < data.premiseNeed.Count; i++)
+			{
+				where = where && choosenEndings.Contains(data.premiseNeed[i]);
+			}
+			return where;
+		});
+
+		return new List<EndingData>(canBeSelectedEndingList);
+	}
+
+	private void Update()
+	{
+		if (timeFlag == true)
+		{
+
+			totalTime = int.Parse(GameObject.Find("Canvas").GetComponent<UIManager>().text_time.text);
+		}
+		if (totalTime == 100)
+		{
+			//执行结束动画
+
+		}
+
+
+		//Test 代码
+		//if (Input.GetKeyDown(KeyCode.R))
+		//{
+		//	bodyBallController.GenerateBody(4);
+
+		//	GeneratePlayer(Vector3.one * 5);
+		//}
 	}
 
 }
