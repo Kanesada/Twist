@@ -59,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
         xVelocity = Input.GetAxis("Horizontal");  //获取水平方向移动指令。-1f~1f 不按的时候自动归0 因此不会出现滑动
         yVelocity = Input.GetAxis("Vertical");  //获取水平方向移动指令。-1f~1f 不按的时候自动归0 因此不会出现滑动
         rb.velocity = new Vector2(xVelocity * moveSpeed, yVelocity * moveSpeed);
+        if (rb.velocity.x != 0 && rb.velocity.y != 0) AudioManager.PlayFootstepAudio(); //移动时播放脚步声
 
         if(xVelocity != 0 || yVelocity != 0)
         {
@@ -88,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
             direction = transform.position - headerBall.transform.position;  // 获取角色与header球的方向
             direction = direction.normalized;  // 方向向量单位化
             ballRb.AddForce(direction * pullForce,ForceMode2D.Impulse);
+            AudioManager.PlayPullAudio();  //播放拉音效
             pullPressed = false;
             
             
