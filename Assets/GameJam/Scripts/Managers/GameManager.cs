@@ -34,8 +34,8 @@ public class GameManager : MonoBehaviour
 	[Header("”Œœ∑ ±º‰")]
 	public int totalTime;
 
-	private GamerData gamerData;
-	private BodyBallController bodyBallController;
+	public GamerData gamerData;
+	public BodyBallController bodyBallController;
 	private bool timeFlag;
 	
 
@@ -93,10 +93,12 @@ public class GameManager : MonoBehaviour
 		SceneManager.sceneLoaded -= OnSceneLoaded;
 	}
 
+	public void AddBodyBall(BallType type)
+	{
+		print("AddBodyBall");
+	}
 
-
-
-    private void Update()
+	private void Update()
     {
 		if(timeFlag == true)
         {
