@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
 		if (index == 0) //意味着头撞到了陷阱
 		{
 			// ��Ϸ������
-			Debug.LogError("��Ϸ���� TODO");
+			Debug.LogWarning("��Ϸ���� TODO");
 			// ������Ч
 
 			return;
