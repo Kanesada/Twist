@@ -25,13 +25,15 @@ public class GameManager : MonoBehaviour
 	}
 	#endregion
 
+	[Header("≈‰÷√ ˝æ›")]
 	public LevelData[] levelDatas;
-
-	public GamerData gamerData;
-
-
 	public GameObject playerPrefab;
 	public GameObject[] BodyBallPrefabs;
+
+
+	private GamerData gamerData;
+	private BodyBallController bodyBallController;
+
 
 	void OnEnable()
 	{
@@ -42,11 +44,19 @@ public class GameManager : MonoBehaviour
 	private void Start()
 	{
 		gamerData = new GamerData();
+		bodyBallController = new BodyBallController();
+
 		print(levelDatas[0].levelNumber);
 		print(levelDatas[0].initialBallPosition[0]);
 
+		TestRollABallScene();
 	}
 
+
+	private void TestRollABallScene()
+	{
+
+	}
 
 	private void GenerateLevel1()
 	{
