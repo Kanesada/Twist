@@ -7,13 +7,17 @@ using UnityEngine;
 /// </summary>
 public class GamerData 
 {
-	
-	
+
+	/// <summary>
+	/// 玩家吃到的球
+	/// </summary>
+	public List<BodyBallType> bodyBallList = new List<BodyBallType>();
 	
 	/// <summary>
 	/// 玩家已经选择的结局
 	/// </summary>
 	public List<int> choosenEndings = new List<int>();
 
+	
 
 }

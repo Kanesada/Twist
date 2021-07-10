@@ -25,13 +25,15 @@ public class GameManager : MonoBehaviour
 	}
 	#endregion
 
+	[Header("≈‰÷√ ˝æ›")]
 	public LevelData[] levelDatas;
-
-	public GamerData gamerData;
-
-
 	public GameObject playerPrefab;
 	public GameObject[] BodyBallPrefabs;
+
+
+	[HideInInspector]
+	public GamerData gamerData;
+
 
 	void OnEnable()
 	{
