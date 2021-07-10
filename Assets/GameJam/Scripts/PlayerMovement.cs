@@ -26,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
     public bool pullPressed = false;  // 角色是否按下拉
     public float pullForce = 10f;  //角色拉力
 
+	[Header("绳子特效")]
+	public LineRenderer lineRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +48,9 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("pull", true);
         }
         if(Input.GetButtonUp("Jump")) anim.SetBool("pull", false);
-        
+
+		RenderString();
+
     }
     private void FixedUpdate()
     {
@@ -53,6 +58,22 @@ public class PlayerMovement : MonoBehaviour
         PlayerPull();
         FlipDirection();
     }
+
+	void RenderString()
+	{
+		List<Vector3> points = new List<Vector3>();
+		var pos1 = this.transform.position;
+		pos1.z = -1;
+		points.Add(pos1);
+		var pos2 = headerBall.transform.position;
+		pos2.z = -1;
+		points.Add(pos2);
+
+		lineRenderer.SetPositions(points.ToArray());
+
+		lineRenderer.startWidth = 0.1f;
+		lineRenderer.endWidth = 0.1f;
+	}
 
     void PlayerRun()
     {
@@ -91,8 +112,6 @@ public class PlayerMovement : MonoBehaviour
             ballRb.AddForce(direction * pullForce,ForceMode2D.Impulse);
             AudioManager.PlayPullAudio();  //播放拉音效
             pullPressed = false;
-            
-            
         }
 
 		// 播放音效

@@ -118,11 +118,10 @@ public class GameManager : MonoBehaviour
 	public void RemoveBodyBall(BodyBall bodyBall)
 	{
 		int index = bodyBallController.GetBodyBallIndex(bodyBall);
-		if (index == 0) //��ζ��ͷײ��������
+		if (index == 0) //当头和身子撞上Traps
 		{
-			// ��Ϸ������
-			Debug.LogError("��Ϸ���� TODO");
-			// ������Ч
+			// Todo
+			Debug.LogWarning("游戏结束？ TODO");
 
 			return;
 		}
@@ -131,7 +130,6 @@ public class GameManager : MonoBehaviour
 
 		gamerData.RemoveRestBodyBall(index);
 		bodyBallController.ChangeBodyBallVisiable();
-		// ������Ч
 	}
 
 	private void LoadEngindData()
@@ -193,15 +191,6 @@ public class GameManager : MonoBehaviour
 			//ִ�н�������
 
 		}
-
-
-		//Test ����
-		//if (Input.GetKeyDown(KeyCode.R))
-		//{
-		//	bodyBallController.GenerateBody(4);
-
-		//	GeneratePlayer(Vector3.one * 5);
-		//}
 	}
 
 }
