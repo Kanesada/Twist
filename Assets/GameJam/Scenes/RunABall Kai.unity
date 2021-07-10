@@ -58642,26 +58642,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1000449367752582587, guid: 052037ff0f5c5be45a0c9137191c4df0, type: 3}
-      propertyPath: winClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 5ca147fa416394c4e9cd5eff7343eb23, type: 3}
-    - target: {fileID: 1000449367752582587, guid: 052037ff0f5c5be45a0c9137191c4df0, type: 3}
-      propertyPath: musicClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 5d7690dd29101444a8a634b2da2f5f3e, type: 3}
-    - target: {fileID: 1000449367752582587, guid: 052037ff0f5c5be45a0c9137191c4df0, type: 3}
-      propertyPath: ballAddClip
-      value: 
-      objectReference: {fileID: 8300000, guid: adcdcf962ffee4c3ea97ae70bb6301e4, type: 3}
-    - target: {fileID: 1000449367752582587, guid: 052037ff0f5c5be45a0c9137191c4df0, type: 3}
-      propertyPath: ballLostAudio
-      value: 
-      objectReference: {fileID: 8300000, guid: 4e3f9922651f9428e8b99445e42653dc, type: 3}
-    - target: {fileID: 1000449367752582587, guid: 052037ff0f5c5be45a0c9137191c4df0, type: 3}
-      propertyPath: walkStepClips.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 767b43daae4f77a4db7672f1bc7dc469, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 052037ff0f5c5be45a0c9137191c4df0, type: 3}
 --- !u!1001 &2924988328224461842
