@@ -17,5 +17,11 @@ public class BodyBall : MonoBehaviour
 
 			GameManager.Instance.AddBodyBall(ballType);
 		}
+
+
+
+
+
+
 	}
 }

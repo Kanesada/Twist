@@ -11,11 +11,11 @@ public class UIManager : MonoBehaviour
     //private int second;
   
     //已经花费的时间
-    float timeSpeed = 0.0f;
+    
     //显示时间区域的文本
     public Text text_time;
-    
 
+    float timeSpeed = 0.0f;
 
 
     // Start is called before the first frame update
