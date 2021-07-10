@@ -60,7 +60,15 @@ public class GameManager : MonoBehaviour
 
 	private void GenerateLevel1()
 	{
-		print("°¢Ë¹¶Ù");
+		for(int i = 0;i< levelDatas[0].initialBallCount; i++)
+        {
+			Vector3 pos = levelDatas[0].initialBallPosition[i];
+			
+			Instantiate(BodyBallPrefabs[i], pos, Quaternion.identity);
+			
+
+		}
+		
 	}
 
 
