@@ -28,12 +28,17 @@ public class GameManager : MonoBehaviour
 	[Header("配置数据")]
 	public LevelData[] levelDatas;
 	public GameObject playerPrefab;
+	public GameObject bodyBallPrefab;
 	public GameObject[] BodyBallPrefabs;
 
 
+	[Header("游戏时间")]
+	public int totalTime;
+
 	public GamerData gamerData;
 	public BodyBallController bodyBallController;
-
+	private bool timeFlag;
+	
 
 	void OnEnable()
 	{
@@ -44,10 +49,11 @@ public class GameManager : MonoBehaviour
 	private void Start()
 	{
 		gamerData = new GamerData();
+		gamerData.Init();
 		bodyBallController = new BodyBallController();
 
 		print(levelDatas[0].levelNumber);
-		print(levelDatas[0].initialBallPosition[0]);
+		timeFlag = false;
 
 		TestRollABallScene();
 	}
@@ -60,13 +66,15 @@ public class GameManager : MonoBehaviour
 
 	private void GenerateLevel1()
 	{
+		timeFlag = true;
+		
+		
 		for(int i = 0;i< levelDatas[0].initialBallCount; i++)
         {
 			Vector3 pos = levelDatas[0].initialBallPosition[i];
-			
+			//print(pos);
 			Instantiate(BodyBallPrefabs[i], pos, Quaternion.identity);
 			
-
 		}
 		
 	}
@@ -74,9 +82,10 @@ public class GameManager : MonoBehaviour
 
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
-		if (scene.name == ConstData.ScenePlay)
+		if (scene.name == ConstData.SceneRunABall)
 		{
 			GenerateLevel1();
+
 		}
 	}
 
@@ -86,11 +95,38 @@ public class GameManager : MonoBehaviour
 		SceneManager.sceneLoaded -= OnSceneLoaded;
 	}
 
-
-
 	public void AddBodyBall(BallType type)
 	{
-		print("AddBodyBall");
+		gamerData.AddBodyBall(type);
+		bodyBallController.ChangeBodyBallVisiable();
+	}
+
+	public void RemoveBodyBall(BodyBall bodyBall)
+	{
+		int index = bodyBallController.GetBodyBallIndex(bodyBall);
+		gamerData.RemoveBodyBall(index);
+		bodyBallController.ChangeBodyBallVisiable();
+	}
+
+	private void Update()
+    {
+		if(timeFlag == true)
+        {
+
+			totalTime = int.Parse(GameObject.Find("Canvas").GetComponent<UIManager>().text_time.text);
+		}
+		if (totalTime == 100)
+		{
+			//执行结束动画
+
+		}
+
+
+		//Test 代码
+		if (Input.GetKeyDown(KeyCode.R))
+		{
+			bodyBallController.GenerateBody(4);
+		}
 	}
 
 }

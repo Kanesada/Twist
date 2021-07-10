@@ -484,6 +484,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 390045763477080564, guid: b87a0b4d99e9b63448200ef08ccf825c, type: 3}
+      propertyPath: bodyBallPrefab
+      value: 
+      objectReference: {fileID: 1348991469034567537, guid: 0afffd2ec7841da4b9c3188dd0c33240, type: 3}
     - target: {fileID: 390045763477080565, guid: b87a0b4d99e9b63448200ef08ccf825c, type: 3}
       propertyPath: m_RootOrder
       value: 5

@@ -14,8 +14,8 @@ public class MainMenu : MonoBehaviour
 
 	public void OnPlay()
 	{
-		SceneManager.LoadScene(ConstData.ScenePlay);
-		print("OnPlay");
+		SceneManager.LoadScene(ConstData.SceneRunABall);
+		print("OnSceneRunABall");
 	}
 
 
