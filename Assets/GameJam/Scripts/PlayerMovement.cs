@@ -72,7 +72,6 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    void PlayerPull()
 	void PlayerPull()
     {
         if(pullPressed == true)  // 当按下空格
