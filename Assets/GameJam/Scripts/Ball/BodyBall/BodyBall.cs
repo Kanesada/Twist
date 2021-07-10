@@ -8,6 +8,9 @@ public class BodyBall : MonoBehaviour
 
 	public bool isHead;
 
+	public SpriteRenderer spriteRender;
+
+
 	public HingeJoint2D hingeJoint2D;
 
 	public void Init(bool isHead, Rigidbody2D tailRig)
@@ -23,6 +26,17 @@ public class BodyBall : MonoBehaviour
 		hingeJoint2D.enabled = true;
 		hingeJoint2D.connectedBody = nextRig;
 	}
+
+	public void Active(BallType type)
+	{
+		spriteRender.enabled = true;
+	}
+
+	public void Deactive()
+	{
+		spriteRender.enabled = false;
+	}
+
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{

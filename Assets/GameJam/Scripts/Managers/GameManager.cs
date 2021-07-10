@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
 	private void Start()
 	{
 		gamerData = new GamerData();
+		gamerData.Init();
 		bodyBallController = new BodyBallController();
 
 		print(levelDatas[0].levelNumber);
@@ -96,7 +97,15 @@ public class GameManager : MonoBehaviour
 
 	public void AddBodyBall(BallType type)
 	{
-		print("AddBodyBall");
+		gamerData.AddBodyBall(type);
+		bodyBallController.ChangeBodyBallVisiable();
+	}
+
+	public void RemoveBodyBall(BodyBall bodyBall)
+	{
+		int index = bodyBallController.GetBodyBallIndex(bodyBall);
+		gamerData.RemoveBodyBall(index);
+		bodyBallController.ChangeBodyBallVisiable();
 	}
 
 	private void Update()
@@ -109,6 +118,13 @@ public class GameManager : MonoBehaviour
 		{
 			//执行结束动画
 
+		}
+
+
+		//Test 代码
+		if (Input.GetKeyDown(KeyCode.R))
+		{
+			bodyBallController.GenerateBody(4);
 		}
 	}
 

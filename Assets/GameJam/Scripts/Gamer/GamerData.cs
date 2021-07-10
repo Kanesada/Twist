@@ -8,10 +8,6 @@ using UnityEngine;
 public class GamerData 
 {
 
-	public void Init()
-	{
-		bodyBallList.Add(BallType.Life);
-	}
 
 	/// <summary>
 	/// Íæ¼Ò³Ôµ½µÄÇò
@@ -23,6 +19,24 @@ public class GamerData
 	/// </summary>
 	public List<int> choosenEndings = new List<int>();
 
-	
+	public void Init()
+	{
+		bodyBallList.Add(BallType.Life);
+	}
+
+	public void AddBodyBall(BallType type)
+	{
+		bodyBallList.Add(type);
+	}
+
+	public void RemoveBodyBall(int index)
+	{
+		while(bodyBallList.Count > index)
+		{
+			bodyBallList.RemoveAt(bodyBallList.Count - 1);
+		}
+	}
+
+
 
 }

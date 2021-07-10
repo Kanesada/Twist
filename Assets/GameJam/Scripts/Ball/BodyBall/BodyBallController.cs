@@ -9,10 +9,25 @@ public class BodyBallController
 
 	private List<BodyBall> bodyBallList = new List<BodyBall>();
 
+	private int maxCount;
+
 	public void GenerateBody(int maxCount)
 	{
+		foreach(var bodyBall in bodyBallList)
+		{
+			GameObject.Destroy(bodyBall.gameObject);
+		}
+		bodyBallList.Clear();
+
+		this.maxCount = maxCount;
+
 		var bodyTypeList = GameManager.Instance.gamerData.bodyBallList;
 		var bodyballprefab = GameManager.Instance.bodyBallPrefab;
+
+		if (bodyTypeList.Count > maxCount)
+		{
+			throw new System.Exception("maxCount 大点");
+		}
 
 		var tail = GameObject.Instantiate(bodyballprefab);
 		tailRig = tail.GetComponent<Rigidbody2D>();
@@ -42,12 +57,32 @@ public class BodyBallController
 			bodyBallList.Add(bodyBall);
 		}
 
-		// 按数据生成真实球串
-		
+
+		ChangeBodyBallVisiable();
 	}
 
-	private BodyBall GenerateBodyBallFactory(BallType ballType)
+	public void ChangeBodyBallVisiable()
 	{
-		return null;
+		var bodyTypeList = GameManager.Instance.gamerData.bodyBallList;
+
+		for (int i = 0; i < bodyBallList.Count; i++)
+		{
+			var bodyBall = bodyBallList[i];
+			if (i < bodyTypeList.Count)
+			{
+				var type = bodyTypeList[i];
+				bodyBall.Active(type);
+			}
+			else
+			{
+				bodyBall.Deactive();
+			}
+		}
 	}
+
+	public int GetBodyBallIndex(BodyBall bodyBall)
+	{
+		return bodyBallList.FindIndex((BodyBall bb) => bb == bodyBall);
+	}
+
 }
