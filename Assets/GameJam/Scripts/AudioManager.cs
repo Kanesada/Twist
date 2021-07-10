@@ -50,7 +50,8 @@ public class AudioManager : MonoBehaviour
 
     public static void PlayWinAudio() // 播放胜利音效
     {
-
+        current.musicSource.clip = current.winClip;
+        current.musicSource.Play();
     }
 
     public static void PlayPullAudio()  // 播放 拉 音效
