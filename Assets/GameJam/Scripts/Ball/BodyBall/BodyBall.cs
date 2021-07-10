@@ -50,29 +50,26 @@ public class BodyBall : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		// 头部吃到道具
-		if (collision.tag == "ItemBall" && isHead == true)
+		if (collision.tag == "ItemBall" && isHead == true) // 头部吃到道具
 		{
 			var ballType = collision.GetComponent<ItemBall>().ballType;
 			Destroy(collision.gameObject);
 
 			GameManager.Instance.AddBodyBall(ballType);
 		}
-
-		// 头或者身碰到陷阱
-		if (collision.tag == "Traps")
+		else if (collision.tag == "Traps") // 头或者身碰到陷阱
 		{
 			GameManager.Instance.RemoveBodyBall(this);
 		}
-
-		if (collision.tag == "Track")
+		else if (collision.tag == "WinZone" && isHead == true) // 头碰到关卡出口
+		{
+			// 播放音效
+		}
+		else if (collision.tag == "Obstacle") // 碰到障碍物
 		{
 			// 播放音效
 		}
 
-		if (collision.tag == "Obstacle")
-		{
-			// 播放音效
-		}
+
 	}
 }

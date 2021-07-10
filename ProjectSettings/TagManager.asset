@@ -5,10 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - BodyBall
-  - Track
   - Obstacle
   - ItemBall
   - Traps
+  - WinZone
   layers:
   - Default
   - TransparentFX
