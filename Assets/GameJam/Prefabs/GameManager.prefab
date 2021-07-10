@@ -48,7 +48,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4a94efa87d7b3df4f899d9f07b744d8c, type: 2}
   playerPrefab: {fileID: 4737539882218347348, guid: 0053b5383ea416b4abec4d9a5d611f94, type: 3}
   headBallPrefab: {fileID: 1067925387514590371, guid: fe563a6337825b341a232e438ca7ecf7, type: 3}
-  bodyBallPrefab: {fileID: 1348991469034567537, guid: 0afffd2ec7841da4b9c3188dd0c33240, type: 3}
+  bodyBallPrefab: {fileID: 1056927177828889243, guid: 584d811769dd3bc40ba656cf9ff3b6df, type: 3}
   BodyBallPrefabs:
   - {fileID: 6858622782132766188, guid: ab857a0ba67f78d4d9250b94ffe18160, type: 3}
   - {fileID: 6858622782132766188, guid: ab857a0ba67f78d4d9250b94ffe18160, type: 3}
