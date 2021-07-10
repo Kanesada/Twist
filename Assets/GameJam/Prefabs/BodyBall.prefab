@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1348991469034567543}
   - component: {fileID: 1348991469034567542}
   - component: {fileID: 1008100234275895934}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BodyBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1348991469153479781}
   - component: {fileID: 1348991469153479834}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Appearance
   m_TagString: Untagged
   m_Icon: {fileID: 0}

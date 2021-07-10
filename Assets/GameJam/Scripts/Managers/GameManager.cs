@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
 	public GameObject[] BodyBallPrefabs;
 
 
-
 	private GamerData gamerData;
 	private BodyBallController bodyBallController;
 
@@ -50,8 +49,14 @@ public class GameManager : MonoBehaviour
 		print(levelDatas[0].levelNumber);
 		print(levelDatas[0].initialBallPosition[0]);
 
+		TestRollABallScene();
 	}
 
+
+	private void TestRollABallScene()
+	{
+
+	}
 
 	private void GenerateLevel1()
 	{
