@@ -62,13 +62,19 @@ public class PlayerMovement : MonoBehaviour
 
         if(xVelocity != 0 || yVelocity != 0)
         {
+            anim.SetInteger("smile", 10);
             if (xVelocity != 0)
             {
                 anim.SetFloat("running", Mathf.Abs(xVelocity));
             }
             else anim.SetFloat("running", Mathf.Abs(yVelocity));
         }
-
+        else
+        {
+            //静止时彩蛋
+            int a = Random.Range(0, 10);
+            anim.SetInteger("smile", a);
+        }
     }
 
     
