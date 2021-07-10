@@ -5,7 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/GameJam/Scenes/Choose.unity
+    guid: 8f4a5dbcdac5d2345bcb97919d6624bc
+  - enabled: 1
+    path: Assets/GameJam/Scenes/MainMenu.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/GameJam/Scenes/Manuel.unity
+    guid: cdbff153ac99af4428e0aafcbd0f9d30
+  - enabled: 1
+    path: Assets/GameJam/Scenes/Option.unity
+    guid: 2c83a4e728141004e8a4c221b7cb8906
+  - enabled: 1
+    path: Assets/GameJam/Scenes/Play.unity
+    guid: 90c800c2534e71446b0af03c09974c6e
   m_configObjects: {}
