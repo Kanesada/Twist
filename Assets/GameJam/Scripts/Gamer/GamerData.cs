@@ -22,6 +22,8 @@ public class GamerData
 	public void Init()
 	{
 		bodyBallList.Add(BallType.Life);
+		bodyBallList.Add(BallType.Life);
+		bodyBallList.Add(BallType.Life);
 	}
 
 	public void AddBodyBall(BallType type)

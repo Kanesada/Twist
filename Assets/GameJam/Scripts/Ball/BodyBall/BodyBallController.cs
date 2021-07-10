@@ -85,4 +85,9 @@ public class BodyBallController
 		return bodyBallList.FindIndex((BodyBall bb) => bb == bodyBall);
 	}
 
+	public GameObject GetHead()
+	{
+		return bodyBallList[0].gameObject;
+	}
+
 }

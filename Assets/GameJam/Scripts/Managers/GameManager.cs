@@ -64,6 +64,11 @@ public class GameManager : MonoBehaviour
 
 	}
 
+	private void GeneratePlayer(Vector3 position)
+	{
+		var player = GameObject.Instantiate(playerPrefab, position, Quaternion.identity);
+	}
+
 	private void GenerateLevel1()
 	{
 		timeFlag = true;
@@ -126,6 +131,8 @@ public class GameManager : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.R))
 		{
 			bodyBallController.GenerateBody(4);
+
+			GeneratePlayer(Vector3.one*5);
 		}
 	}
 
