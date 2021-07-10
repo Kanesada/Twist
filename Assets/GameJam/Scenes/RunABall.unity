@@ -14526,7 +14526,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7.48
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -30424,7 +30424,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1205433055
 MonoBehaviour:
@@ -44283,7 +44283,7 @@ Canvas:
   m_GameObject: {fileID: 1568488679}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -46484,7 +46484,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1667242184
 PrefabInstance:
@@ -56288,7 +56288,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1205433054}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 5
+    OrthographicSize: 7.48
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -56314,7 +56314,7 @@ Transform:
   m_Children:
   - {fileID: 1298921343}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2052377573
 MonoBehaviour:
@@ -58587,6 +58587,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1669738143207018231, guid: d4df81375ab76be4c97ad70321373580, type: 3}
   m_PrefabInstance: {fileID: 2144919016}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1000449367400840325
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1000449367752582584, guid: 052037ff0f5c5be45a0c9137191c4df0, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000449367752582586, guid: 052037ff0f5c5be45a0c9137191c4df0, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000449367752582586, guid: 052037ff0f5c5be45a0c9137191c4df0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.7723465
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000449367752582586, guid: 052037ff0f5c5be45a0c9137191c4df0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.040238626
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000449367752582586, guid: 052037ff0f5c5be45a0c9137191c4df0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.5555496
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000449367752582586, guid: 052037ff0f5c5be45a0c9137191c4df0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000449367752582586, guid: 052037ff0f5c5be45a0c9137191c4df0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000449367752582586, guid: 052037ff0f5c5be45a0c9137191c4df0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000449367752582586, guid: 052037ff0f5c5be45a0c9137191c4df0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000449367752582586, guid: 052037ff0f5c5be45a0c9137191c4df0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000449367752582586, guid: 052037ff0f5c5be45a0c9137191c4df0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000449367752582586, guid: 052037ff0f5c5be45a0c9137191c4df0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000449367752582587, guid: 052037ff0f5c5be45a0c9137191c4df0, type: 3}
+      propertyPath: winClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 822bf1cd43d1c3f4b83530efa1f14901, type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 052037ff0f5c5be45a0c9137191c4df0, type: 3}
 --- !u!1001 &2924988328224461842
 PrefabInstance:
   m_ObjectHideFlags: 0
