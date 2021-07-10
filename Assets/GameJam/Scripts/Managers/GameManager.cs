@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
 
 	public GamerData gamerData;
 	public BodyBallController bodyBallController;
+
 	private bool timeFlag;
 	
 
@@ -52,7 +53,7 @@ public class GameManager : MonoBehaviour
 		gamerData = new GamerData();
 		gamerData.Init();
 		bodyBallController = new BodyBallController();
-
+		
 		print(levelDatas[0].levelNumber);
 		timeFlag = false;
 	}
@@ -138,6 +139,10 @@ public class GameManager : MonoBehaviour
 
 			GeneratePlayer(Vector3.one*5);
 		}
+
+
+       
+
 	}
 
 }

@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 direction;
     private Rigidbody2D ballRb;
     private Animator anim;
+    private Cinemachine.CinemachineCollisionImpulseSource MyInpulse;
 
     [Header("Header 球")]
     public GameObject headerBall;
@@ -34,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
         ballRb = headerBall.GetComponent<Rigidbody2D>();  //获取header球的刚体
         anim = GetComponent<Animator>();
 
+        MyInpulse = GetComponent<Cinemachine.CinemachineCollisionImpulseSource>();
+
     }
 
     // Update is called once per frame
@@ -45,6 +48,15 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("pull", true);
         }
         if(Input.GetButtonUp("Jump")) anim.SetBool("pull", false);
+
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            MyInpulse.GenerateImpulse();
+            print(11111);
+        }
+
+
         
     }
     private void FixedUpdate()
