@@ -6,7 +6,13 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private CircleCollider2D coll;
+    private Vector2 direction;
+    private Rigidbody2D ballRb;
 
+    [Header("Header 球")]
+    public GameObject headerBall;
+
+    
 
     [Header("移动设置")]
     public float moveSpeed = 3f;
@@ -15,22 +21,30 @@ public class PlayerMovement : MonoBehaviour
     public float xVelocity; // x轴的受力方向
     public float yVelocity; // y轴的受力方向
 
+    [Header("角色拉力")]
+    public bool pullPressed = false;  // 角色是否按下拉
+    public float pullForce = 10f;  //角色拉力
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();  //引用角色刚体
-        coll = GetComponent<CircleCollider2D>();
+        coll = GetComponent<CircleCollider2D>();  //角色碰撞
+        ballRb = headerBall.GetComponent<Rigidbody2D>();  //获取header球的刚体
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButtonDown("Jump")) pullPressed = true;
+          
 
     }
     private void FixedUpdate()
     {
         PlayerRun();
+        PlayerPull();
     }
 
     void PlayerRun()
@@ -40,5 +54,18 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(xVelocity * moveSpeed, yVelocity * moveSpeed);
 
     }
+
+    void PlayerPull()
+    {
+        if(pullPressed == true)  // 当按下空格
+        {
+            direction = transform.position - headerBall.transform.position;  // 获取角色与header球的方向
+            direction = direction.normalized;  // 方向向量单位化
+            ballRb.AddForce(direction * pullForce,ForceMode2D.Impulse);
+            pullPressed = false;
+        }
+    }
+
+
 
 }
