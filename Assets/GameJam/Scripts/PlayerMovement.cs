@@ -53,9 +53,10 @@ public class PlayerMovement : MonoBehaviour
         yVelocity = Input.GetAxis("Vertical");  //获取水平方向移动指令。-1f~1f 不按的时候自动归0 因此不会出现滑动
         rb.velocity = new Vector2(xVelocity * moveSpeed, yVelocity * moveSpeed);
 
-    }
+		// 播放音效
+	}
 
-    void PlayerPull()
+	void PlayerPull()
     {
         if(pullPressed == true)  // 当按下空格
         {
@@ -74,10 +75,12 @@ public class PlayerMovement : MonoBehaviour
             ballRb.AddForce(direction * pullForce,ForceMode2D.Impulse);
             pullPressed = false;
         }
-    }
+
+		// 播放音效
+	}
 
 
-    void FlipDirection()  //控制角色行动时贴图的方向
+	void FlipDirection()  //控制角色行动时贴图的方向
     {
         if (xVelocity > 0)
         {

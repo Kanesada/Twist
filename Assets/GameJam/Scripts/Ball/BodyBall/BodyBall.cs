@@ -63,9 +63,16 @@ public class BodyBall : MonoBehaviour
 		if (collision.tag == "Traps")
 		{
 			GameManager.Instance.RemoveBodyBall(this);
+		}
+
+		if (collision.tag == "Track")
+		{
 			// 播放音效
 		}
-		
 
+		if (collision.tag == "Obstacle")
+		{
+			// 播放音效
+		}
 	}
 }

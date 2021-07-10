@@ -9,13 +9,3 @@ public enum BallType
 	Illness,
 	None,
 }
-
-public enum ItemBallType
-{
-
-}
-
-public enum BodyBallType
-{
-
-}

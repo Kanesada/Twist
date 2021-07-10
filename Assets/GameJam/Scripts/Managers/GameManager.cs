@@ -55,14 +55,6 @@ public class GameManager : MonoBehaviour
 
 		print(levelDatas[0].levelNumber);
 		timeFlag = false;
-
-		TestRollABallScene();
-	}
-
-
-	private void TestRollABallScene()
-	{
-
 	}
 
 	private void GeneratePlayer(Vector3 position)
@@ -105,6 +97,8 @@ public class GameManager : MonoBehaviour
 	{
 		gamerData.AddBodyBall(type);
 		bodyBallController.ChangeBodyBallVisiable();
+
+		// 播放音效
 	}
 
 	public void RemoveBodyBall(BodyBall bodyBall)
@@ -114,11 +108,13 @@ public class GameManager : MonoBehaviour
 		{
 			// 游戏结束？
 			Debug.LogError("游戏结束 TODO");
+			// 播放音效
 			return;
 		}
 
 		gamerData.RemoveRestBodyBall(index);
 		bodyBallController.ChangeBodyBallVisiable();
+		// 播放音效
 	}
 
 	private void Update()

@@ -58,13 +58,15 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			StartPullBodyBall();
+			// 播放音效
 		}
 		else if (Input.GetKeyUp(KeyCode.Space))
 		{
 			EndPullBodyBall();
+			// 播放音效
 		}
 
-		
+
 	}
 
 
