@@ -1,7 +1,12 @@
 
 public enum BallType
 {
-	Shengming
+	Life,
+	Money,
+	Emotion,
+	Knowledge,
+	Smoke,
+	Illness,
 }
 
 public enum ItemBallType

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -44,13 +45,20 @@ public class GameManager : MonoBehaviour
 	}
 
 
-	public void GenerateLevel()
+	private void GenerateLevel1()
 	{
+		print("°¢Ë¹¶Ù");
+	}
 
+
+	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+	{
+		if (scene.name == ConstData.ScenePlay)
+		{
+			GenerateLevel1();
+		}
 	}
 
 
 
-
-	
 }
