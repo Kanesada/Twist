@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     
 
     [Header("移动设置")]
-    public float moveSpeed = 3f;
+    public float moveSpeed = 10f;
 
     [Header("移动状态")]
     public float xVelocity; // x轴的受力方向
