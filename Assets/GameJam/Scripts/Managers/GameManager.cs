@@ -188,11 +188,7 @@ public class GameManager : MonoBehaviour
 
 			totalTime = int.Parse(GameObject.Find("Canvas").GetComponent<UIManager>().text_time.text);
 		}
-		if (totalTime == 100)
-		{
-			//执行结束动画
-
-		}
+		
 
 
 		//Test 代码

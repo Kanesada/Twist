@@ -10,10 +10,13 @@ public class BodyBall : MonoBehaviour
 
 	public SpriteRenderer spriteRender;
 
-
+	private Animator anim;
 	public HingeJoint2D hingeJoint2D;
 
-	public void Init(bool isHead, Rigidbody2D tailRig, bool isTail = false)
+
+
+
+    public void Init(bool isHead, Rigidbody2D tailRig, bool isTail = false)
 	{
 		this.isHead = isHead;
 		hingeJoint2D = GetComponent<HingeJoint2D>();
@@ -27,14 +30,46 @@ public class BodyBall : MonoBehaviour
 		hingeJoint2D.connectedBody = nextRig;
 	}
 
-	public void Active(BallType type = BallType.None)
+	public void Active(BallType type)
 	{
 		hingeJoint2D.enabled = true;
 		spriteRender.enabled = true;
 		gameObject.layer = LayerMask.NameToLayer("BodyBall");
-	}
+        switch (type)
+		{
+			case BallType.Love:
+				gameObject.GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load("love",typeof(Sprite)) as Sprite;
+				break;
+			case BallType.Money:
+				gameObject.GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load("money", typeof(Sprite)) as Sprite;
+				//gameObject.GetComponentInChildren<Animator>().SetBool("money", true);
+				break;
+			case BallType.Virus:
+				gameObject.GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load("virus", typeof(Sprite)) as Sprite;
+				break;
+			case BallType.Smoke:
+				gameObject.GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load("smoke", typeof(Sprite)) as Sprite;
+				break;
+			case BallType.Book:
+				gameObject.GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load("book", typeof(Sprite)) as Sprite;
+				break;
+			default:
+				break;
+			
+		}
 
-	public void Deactive()
+
+
+
+
+
+
+
+
+
+    }
+
+    public void Deactive()
 	{
 		hingeJoint2D.enabled = false;
 		spriteRender.enabled = false;
@@ -53,6 +88,8 @@ public class BodyBall : MonoBehaviour
 		else if (collision.tag == "Traps") // 头或者身碰到陷阱
 		{
 			GameManager.Instance.RemoveBodyBall(this);
+			//减少生命
+			GameObject.Find("Canvas").GetComponent<UIManager>().LoseLife();
 		}
 		else if (collision.tag == "WinZone" && isHead == true) // 头碰到关卡出口
 		{

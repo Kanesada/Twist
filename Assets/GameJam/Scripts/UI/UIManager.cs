@@ -14,14 +14,20 @@ public class UIManager : MonoBehaviour
     
     //显示时间区域的文本
     public Text text_time;
+    public Text total_time;
+    public int lose_seconds;
 
     float timeSpeed = 0.0f;
+    private int totalnow;
 
 
     // Start is called before the first frame update
     void Start()
     {
-       
+        total_time.GetComponent<Text>().text = "100";
+        lose_seconds = 10;
+
+
     }
 
     // Update is called once per frame
@@ -34,14 +40,28 @@ public class UIManager : MonoBehaviour
         //text_time.GetComponent<Text>().text= string.Format("{0:D3}:{1:D2}:{2:D2}", hour, minute, second);
         text_time.GetComponent<Text>().text = string.Format("{0}", timeSpeed.ToString("0"));
 
+
+        if (total_time.GetComponent<Text>().text.Equals(text_time.GetComponent<Text>().text))
+        {
+            Debug.Log("游戏结束");
+        }
+
+
+
        
+    }
 
-
-
-
-
-
+    public void LoseLife()
+    {
+        totalnow = int.Parse(total_time.GetComponent<Text>().text);
+        totalnow -= lose_seconds;
+        total_time.GetComponent<Text>().text = totalnow.ToString();
 
 
     }
+
+
+
+
+
 }
