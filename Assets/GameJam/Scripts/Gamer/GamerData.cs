@@ -27,10 +27,8 @@ public class GamerData
 
 	public void Init()
 	{
-		Level = 1;
+		Level = 0;
 
-		BodyBallList.Add(BallType.Life);
-		BodyBallList.Add(BallType.Life);
 		BodyBallList.Add(BallType.Life);
 	}
 
@@ -47,11 +45,10 @@ public class GamerData
 		}
 	}
 
-	public void OnLevelUp(int endingNumber)
+
+	public void LevelUp()
 	{
 		Level += 1;
-		ChoosenEndings.Add(endingNumber);
 	}
-
 
 }
