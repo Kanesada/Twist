@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
 
 	public void OnPlay()
 	{
+		//SceneManager.LoadScene(ConstData.SceneTestRunABall);
 		SceneManager.LoadScene(ConstData.SceneRunABall);
 		print("OnSceneRunABall");
 	}

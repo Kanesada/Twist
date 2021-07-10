@@ -36,20 +36,20 @@ public class GameManager : MonoBehaviour
 	[Header("游戏时间")]
 	public int totalTime;
 
+	// 玩家数据
 	public GamerData gamerData;
-	public BodyBallController bodyBallController;
+
+	public BodyBallControllerNew bodyBallController;
 
 	private bool timeFlag;
+	
+
 	
 
 	void OnEnable()
 	{
 		SceneManager.sceneLoaded += OnSceneLoaded;
-	}
 
-
-	private void Start()
-	{
 		gamerData = new GamerData();
 		gamerData.Init();
 		bodyBallController = new BodyBallController();
@@ -68,14 +68,15 @@ public class GameManager : MonoBehaviour
 		timeFlag = true;
 		
 		
-		for(int i = 0;i< levelDatas[0].initialBallCount; i++)
+		for(int i = 0;i < levelDatas[0].initialBallCount; i++)
         {
 			Vector3 pos = levelDatas[0].initialBallPosition[i];
 			//print(pos);
 			Instantiate(BodyBallPrefabs[i], pos, Quaternion.identity);
 			
 		}
-		
+
+		//bodyBallController.GenerateBody(4);
 	}
 
 
@@ -139,10 +140,54 @@ public class GameManager : MonoBehaviour
 
 			GeneratePlayer(Vector3.one*5);
 		}
+		if (Input.GetKeyDown(KeyCode.T))
+		{
+			LoadEngindData();
+		}
+	}
 
 
-       
 
+	private List<EndingData> endingList = new List<EndingData>();
+
+	public void LoadEngindData()
+	{
+		endingList.Clear();
+		var data = Utils.ParseCSV("Ending", 1);
+		foreach(var row in data)
+		{
+			int number = int.Parse(row[0]);
+			int levelNeed = int.Parse(row[1]);
+			string[] strs = row[2].Split(';');
+			var list = new List<int>();
+			for (int i = 0; i < strs.Length; i++)
+			{
+				list.Add(int.Parse(strs[i]));
+			}
+			var endingData = new EndingData
+			{
+				number = number,
+				levelNeed = levelNeed,
+				premiseNeed = list,
+				describe = row[3]
+			};
+			endingList.Add(endingData);
+		}
+		
+		foreach(var ending in endingList)
+		{
+			print(ending.number);
+			print(ending.levelNeed);
+			print(ending.describe);
+		}
+	}
+
+	public List<EndingData> GetEndingDatas()
+	{
+		int level = gamerData.Level;
+		var choosenEndings = gamerData.ChoosenEndings;
+
+		return null;
 	}
 
 }
