@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
 
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
-		if (scene.name == ConstData.ScenePlay)
+		if (scene.name == ConstData.SceneRunABall)
 		{
 			GenerateLevel1();
 
@@ -112,6 +112,7 @@ public class GameManager : MonoBehaviour
     {
 		if(timeFlag == true)
         {
+
 			totalTime = int.Parse(GameObject.Find("Canvas").GetComponent<UIManager>().text_time.text);
 		}
 		if (totalTime == 100)
