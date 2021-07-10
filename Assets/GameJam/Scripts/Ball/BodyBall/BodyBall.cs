@@ -30,11 +30,13 @@ public class BodyBall : MonoBehaviour
 	public void Active(BallType type)
 	{
 		spriteRender.enabled = true;
+		gameObject.layer = LayerMask.NameToLayer("BodyBall");
 	}
 
 	public void Deactive()
 	{
 		spriteRender.enabled = false;
+		gameObject.layer = LayerMask.NameToLayer("VirtualBall");
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)

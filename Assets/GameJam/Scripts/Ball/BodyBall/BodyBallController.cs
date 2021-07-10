@@ -22,6 +22,7 @@ public class BodyBallController
 		this.maxCount = maxCount;
 
 		var bodyTypeList = GameManager.Instance.gamerData.bodyBallList;
+		var headballprefab = GameManager.Instance.headBallPrefab;
 		var bodyballprefab = GameManager.Instance.bodyBallPrefab;
 
 		if (bodyTypeList.Count > maxCount)
@@ -38,16 +39,21 @@ public class BodyBallController
 		// Éú³ÉÐéÄâÇò´®
 		for (int i = 0; i < maxCount; i++)
 		{
-			var bodyballGO = GameObject.Instantiate(bodyballprefab);
-			var bodyBall = bodyballGO.GetComponent<BodyBall>();
-			var bodyBallRig = bodyballGO.GetComponent<Rigidbody2D>();
-
+			BodyBall bodyBall = null;
 			if (i == 0)
 			{
+				var headBallGo = GameObject.Instantiate(headballprefab);
+				bodyBall = headBallGo.GetComponent<BodyBall>();
+				var headBallRig = headBallGo.GetComponent<Rigidbody2D>();
+
 				bodyBall.Init(true, tailRig);
 			}
 			else if (i > 0)
 			{
+				var bodyballGO = GameObject.Instantiate(bodyballprefab);
+				bodyBall = bodyballGO.GetComponent<BodyBall>();
+				var bodyBallRig = bodyballGO.GetComponent<Rigidbody2D>();
+
 				bodyBall.Init(false, tailRig);
 
 				var lastbodyball = bodyBallList[bodyBallList.Count - 1];
