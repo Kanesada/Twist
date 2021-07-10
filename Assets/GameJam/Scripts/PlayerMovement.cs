@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 direction;
     private Rigidbody2D ballRb;
     private Animator anim;
-    private Cinemachine.CinemachineCollisionImpulseSource MyInpulse;
+    public Cinemachine.CinemachineCollisionImpulseSource MyInpulse;
 
     [Header("Header 球")]
     public GameObject headerBall;
@@ -50,12 +50,7 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetButtonUp("Jump")) anim.SetBool("pull", false);
 
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            MyInpulse.GenerateImpulse();
-            print(11111);
-        }
-
+       
 
         
     }
@@ -80,6 +75,11 @@ public class PlayerMovement : MonoBehaviour
                 anim.SetFloat("running", Mathf.Abs(xVelocity));
             }
             else anim.SetFloat("running", Mathf.Abs(yVelocity));
+        }
+        else
+        {
+            int a = Random.Range(0, 10);
+            anim.SetInteger("smile", a);
         }
 
     }
@@ -123,7 +123,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
+    public void CameraShake()
+    {
+        MyInpulse.GenerateImpulse();
+    }
   
 
 

@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
 
 		gamerData = new GamerData();
 		gamerData.Init();
-		bodyBallController = new BodyBallController();
+		//bodyBallController = new BodyBallController();
 		
 		print(levelDatas[0].levelNumber);
 		timeFlag = false;
@@ -106,6 +106,7 @@ public class GameManager : MonoBehaviour
 	public void RemoveBodyBall(BodyBall bodyBall)
 	{
 		int index = bodyBallController.GetBodyBallIndex(bodyBall);
+		GameObject.Find("Player").GetComponent<PlayerMovement>().CameraShake();
 		if (index == 0) //意味着头撞到了陷阱
 		{
 			// 游戏结束？
