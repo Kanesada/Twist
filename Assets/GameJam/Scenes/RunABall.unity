@@ -58061,10 +58061,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1067925387514590370, guid: fe563a6337825b341a232e438ca7ecf7, type: 3}
-      propertyPath: m_ConnectedRigidBody
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1067925387514590371, guid: fe563a6337825b341a232e438ca7ecf7, type: 3}
       propertyPath: m_Name
       value: Head Circle

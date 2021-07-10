@@ -48,6 +48,8 @@ public class GameManager : MonoBehaviour
 
 	private List<EndingData> levelEndingList;
 
+	private bool hasRemoveBodyBallThisFrame = false;
+
 
 	void OnEnable()
 	{
@@ -64,14 +66,14 @@ public class GameManager : MonoBehaviour
 	private void GenerateLevel1()
 	{
 		timeFlag = true;
-		
-		
-		for(int i = 0;i < levelDatas[0].initialBallCount; i++)
-        {
+
+
+		for (int i = 0; i < levelDatas[0].initialBallCount; i++)
+		{
 			Vector3 pos = levelDatas[0].initialBallPosition[i];
 			//print(pos);
 			Instantiate(BodyBallPrefabs[i], pos, Quaternion.identity);
-			
+
 		}
 
 		//bodyBallController.GenerateBody(4);
@@ -114,11 +116,16 @@ public class GameManager : MonoBehaviour
 
 	public void RemoveBodyBall(BodyBall bodyBall)
 	{
+		if (hasRemoveBodyBallThisFrame == true)
+			return;
+
+		hasRemoveBodyBallThisFrame = true;
 		int index = bodyBallController.GetBodyBallIndex(bodyBall);
 		if (index == 0) //意味着头撞到了陷阱
 		{
+			
 			// 游戏结束？
-			Debug.LogError("游戏结束 TODO");
+			Debug.LogWarning("游戏结束 TODO");
 			// 播放音效
 			return;
 		}
@@ -132,7 +139,7 @@ public class GameManager : MonoBehaviour
 	{
 		endingList.Clear();
 		var data = Utils.ParseCSV("Ending", 1);
-		foreach(var row in data)
+		foreach (var row in data)
 		{
 			int number = int.Parse(row[0]);
 			int levelNeed = int.Parse(row[1]);
@@ -140,7 +147,7 @@ public class GameManager : MonoBehaviour
 			var list = new List<int>();
 			for (int i = 0; i < strs.Length; i++)
 			{
-				int needNumber = int.Parse(strs[i]); 
+				int needNumber = int.Parse(strs[i]);
 				if (needNumber != 0)
 					list.Add(needNumber);
 			}
@@ -177,6 +184,8 @@ public class GameManager : MonoBehaviour
 
 	private void Update()
 	{
+		hasRemoveBodyBallThisFrame = false;
+
 		if (timeFlag == true)
 		{
 
