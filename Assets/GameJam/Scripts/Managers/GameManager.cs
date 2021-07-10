@@ -87,9 +87,16 @@ public class GameManager : MonoBehaviour
 	{
 		if (scene.name == ConstData.SceneRunABall)
 		{
+			gamerData.LevelUp();
 			GenerateLevel1();
-
 		}
+	}
+
+	// 当进入下一个关卡时调用，输入关卡名去切换场景，以及所选择的结局去保存剧情路线
+	public void OnLeaveLevel(string sceneName, EndingData data)
+	{
+		gamerData.ChoosenEndings.Add(data.number);
+		SceneManager.LoadScene(sceneName);
 	}
 
 
@@ -122,15 +129,6 @@ public class GameManager : MonoBehaviour
 		// 播放音效
 	}
 
-
-
-	// 当进入下一个关卡时调用，输入关卡名，以及所选择的结局
-	public void OnLevelUp(string sceneName,EndingData data)
-	{
-		gamerData.LevelUp();
-		gamerData.ChoosenEndings.Add(data.number);
-		SceneManager.LoadScene(sceneName);
-	}
 
 
 	private void LoadEngindData()

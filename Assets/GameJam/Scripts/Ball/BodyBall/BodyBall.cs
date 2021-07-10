@@ -50,9 +50,6 @@ public class BodyBall : MonoBehaviour
 
 			GameManager.Instance.AddBodyBall(ballType);
 		}
-		
-
-
 	}
 
 	private void nCollisionEnter2D(Collision2D collision)
