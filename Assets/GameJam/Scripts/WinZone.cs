@@ -22,6 +22,7 @@ public class WinZone : MonoBehaviour
             //GameManager.PlayerWon();
             headerBallRb.AddForce(direction,ForceMode2D.Impulse);  //施加外力拖向远方
             Debug.Log(" Force complete");
+            AudioManager.PlayWinAudio(); // 播放胜利音效
         }
     }
 

@@ -51,6 +51,8 @@ public class AudioManager : MonoBehaviour
     public static void PlayWinAudio() // 播放胜利音效
     {
         current.musicSource.clip = current.winClip;
+        current.musicSource.volume = 0.5f;
+        current.musicSource.loop = false;
         current.musicSource.Play();
     }
 

@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 	}
 	#endregion
 
-	[Header("ÅäÖÃÊý¾Ý")]
+	[Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
 	public LevelData[] levelDatas;
 	public GameObject playerPrefab;
 	public GameObject headBallPrefab;
@@ -34,10 +34,13 @@ public class GameManager : MonoBehaviour
 	public GameObject[] BodyBallPrefabs;
 
 
-	[Header("ÓÎÏ·Ê±¼ä")]
+	[Header("ï¿½ï¿½Ï·Ê±ï¿½ï¿½")]
 	public int totalTime;
 
-	// Íæ¼ÒÊý¾Ý
+	[Header("Lost Ball animation")]
+	public GameObject lostBallVFXPrefab;
+
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public GamerData gamerData;
 
 	public BodyBallControllerNew bodyBallController;
@@ -102,29 +105,32 @@ public class GameManager : MonoBehaviour
 	{
 		gamerData.AddBodyBall(type);
 		bodyBallController.ChangeBodyBallVisiable();
+		AudioManager.PlayBallAddAudio();  // Add Ball audio
 
-		// ²¥·ÅÒôÐ§
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§
 	}
 
 	public void RemoveBodyBall(BodyBall bodyBall)
 	{
 		int index = bodyBallController.GetBodyBallIndex(bodyBall);
-		if (index == 0) //ÒâÎ¶×ÅÍ·×²µ½ÁËÏÝÚå
+		if (index == 0) //ï¿½ï¿½Î¶ï¿½ï¿½Í·×²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		{
-			// ÓÎÏ·½áÊø£¿
-			Debug.LogError("ÓÎÏ·½áÊø TODO");
-			// ²¥·ÅÒôÐ§
+			// ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			Debug.LogError("ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ TODO");
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§
 			return;
 		}
 
 		gamerData.RemoveRestBodyBall(index);
 		bodyBallController.ChangeBodyBallVisiable();
-		// ²¥·ÅÒôÐ§
+		Instantiate(lostBallVFXPrefab, bodyBall.transform.position, bodyBall.transform.rotation);  //Lost Ball Animation
+		AudioManager.PlayBallLostAudio();   // Lost Ball Audio
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§
 	}
 
 
 
-	// µ±½øÈëÏÂÒ»¸ö¹Ø¿¨Ê±µ÷ÓÃ£¬ÊäÈë¹Ø¿¨Ãû£¬ÒÔ¼°ËùÑ¡ÔñµÄ½á¾Ö
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ø¿ï¿½Ê±ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½Ø¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½Ä½ï¿½ï¿½
 	public void OnLevelUp(string sceneName,EndingData data)
 	{
 		gamerData.LevelUp();
@@ -189,12 +195,12 @@ public class GameManager : MonoBehaviour
 		}
 		if (totalTime == 100)
 		{
-			//Ö´ÐÐ½áÊø¶¯»­
+			//Ö´ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		}
 
 
-		//Test ´úÂë
+		//Test ï¿½ï¿½ï¿½ï¿½
 		//if (Input.GetKeyDown(KeyCode.R))
 		//{
 		//	bodyBallController.GenerateBody(4);
