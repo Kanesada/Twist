@@ -31,9 +31,13 @@ public class GameManager : MonoBehaviour
 	public GameObject[] BodyBallPrefabs;
 
 
+	[Header("游戏时间")]
+	public int totalTime;
+
 	private GamerData gamerData;
 	private BodyBallController bodyBallController;
-
+	private bool timeFlag;
+	
 
 	void OnEnable()
 	{
@@ -47,7 +51,7 @@ public class GameManager : MonoBehaviour
 		bodyBallController = new BodyBallController();
 
 		print(levelDatas[0].levelNumber);
-		print(levelDatas[0].initialBallPosition[0]);
+		timeFlag = false;
 
 		TestRollABallScene();
 	}
@@ -60,13 +64,15 @@ public class GameManager : MonoBehaviour
 
 	private void GenerateLevel1()
 	{
+		timeFlag = true;
+		
+		
 		for(int i = 0;i< levelDatas[0].initialBallCount; i++)
         {
 			Vector3 pos = levelDatas[0].initialBallPosition[i];
-			
+			//print(pos);
 			Instantiate(BodyBallPrefabs[i], pos, Quaternion.identity);
 			
-
 		}
 		
 	}
@@ -77,6 +83,7 @@ public class GameManager : MonoBehaviour
 		if (scene.name == ConstData.ScenePlay)
 		{
 			GenerateLevel1();
+
 		}
 	}
 
@@ -87,5 +94,19 @@ public class GameManager : MonoBehaviour
 	}
 
 
+
+
+    private void Update()
+    {
+		if(timeFlag == true)
+        {
+			totalTime = int.Parse(GameObject.Find("Canvas").GetComponent<UIManager>().text_time.text);
+		}
+		if (totalTime == 100)
+		{
+			//执行结束动画
+
+		}
+	}
 
 }

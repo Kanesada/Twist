@@ -308,7 +308,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &545889873
 GameObject:
@@ -2116,6 +2116,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 390045763477080564, guid: b87a0b4d99e9b63448200ef08ccf825c, type: 3}
+      propertyPath: BodyBallPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 390045763477080564, guid: b87a0b4d99e9b63448200ef08ccf825c, type: 3}
+      propertyPath: BodyBallPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 1348991469034567537, guid: 0afffd2ec7841da4b9c3188dd0c33240, type: 3}
+    - target: {fileID: 390045763477080564, guid: b87a0b4d99e9b63448200ef08ccf825c, type: 3}
+      propertyPath: BodyBallPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 1348991469034567537, guid: 0afffd2ec7841da4b9c3188dd0c33240, type: 3}
     - target: {fileID: 390045763477080565, guid: b87a0b4d99e9b63448200ef08ccf825c, type: 3}
       propertyPath: m_RootOrder
       value: 5
