@@ -7,14 +7,5 @@ public enum BallType
 	Knowledge,
 	Smoke,
 	Illness,
-}
-
-public enum ItemBallType
-{
-
-}
-
-public enum BodyBallType
-{
-
+	None,
 }

@@ -8,7 +8,6 @@ TagManager:
   - Track
   - Obstacle
   - ItemBall
-  - HarmEdge
   - Traps
   layers:
   - Default
@@ -20,7 +19,7 @@ TagManager:
   - BodyBall
   - Scene
   - Player
-  - 
+  - VirtualBall
   - 
   - 
   - 

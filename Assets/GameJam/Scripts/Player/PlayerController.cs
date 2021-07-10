@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
 	private Rigidbody2D rb;
 	private CircleCollider2D coll;
+	private HingeJoint2D hinge;
 
 
 	[Header("移动设置")]
@@ -20,14 +21,30 @@ public class PlayerController : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody2D>();  //引用角色刚体
 		coll = GetComponent<CircleCollider2D>();
+		hinge = GetComponent<HingeJoint2D>();
+		hinge.enabled = false;
 	}
 
-	// Update is called once per frame
-	void Update()
+	
+	public void StartPullBodyBall()
 	{
+		//hinge.enabled = true;
+		//var head = GameManager.Instance.bodyBallController.GetHead();
+		//var headRig = head.GetComponent<Rigidbody2D>();
+		//hinge.connectedBody = headRig;
 
+		var head = GameManager.Instance.bodyBallController.GetHead();
+		var headRig = head.GetComponent<Rigidbody2D>();
+		headRig.AddForce(((Vector2)transform.position - headRig.position));
 	}
-	private void FixedUpdate()
+
+	public void EndPullBodyBall()
+	{
+		//hinge.enabled = false;
+		//hinge.connectedBody = null;
+	}
+
+	private void Update()
 	{
 		BallRun();
 	}
@@ -40,8 +57,16 @@ public class PlayerController : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			
+			StartPullBodyBall();
+			// 播放音效
 		}
+		else if (Input.GetKeyUp(KeyCode.Space))
+		{
+			EndPullBodyBall();
+			// 播放音效
+		}
+
+
 	}
 
 

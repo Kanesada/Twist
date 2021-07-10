@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
 	[Header("配置数据")]
 	public LevelData[] levelDatas;
 	public GameObject playerPrefab;
+	public GameObject headBallPrefab;
 	public GameObject bodyBallPrefab;
 	public GameObject[] BodyBallPrefabs;
 
@@ -54,14 +55,11 @@ public class GameManager : MonoBehaviour
 
 		print(levelDatas[0].levelNumber);
 		timeFlag = false;
-
-		TestRollABallScene();
 	}
 
-
-	private void TestRollABallScene()
+	private void GeneratePlayer(Vector3 position)
 	{
-
+		var player = GameObject.Instantiate(playerPrefab, position, Quaternion.identity);
 	}
 
 	private void GenerateLevel1()
@@ -99,13 +97,24 @@ public class GameManager : MonoBehaviour
 	{
 		gamerData.AddBodyBall(type);
 		bodyBallController.ChangeBodyBallVisiable();
+
+		// 播放音效
 	}
 
 	public void RemoveBodyBall(BodyBall bodyBall)
 	{
 		int index = bodyBallController.GetBodyBallIndex(bodyBall);
-		gamerData.RemoveBodyBall(index);
+		if (index == 0) //意味着头撞到了陷阱
+		{
+			// 游戏结束？
+			Debug.LogError("游戏结束 TODO");
+			// 播放音效
+			return;
+		}
+
+		gamerData.RemoveRestBodyBall(index);
 		bodyBallController.ChangeBodyBallVisiable();
+		// 播放音效
 	}
 
 	private void Update()
@@ -126,6 +135,8 @@ public class GameManager : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.R))
 		{
 			bodyBallController.GenerateBody(4);
+
+			GeneratePlayer(Vector3.one*5);
 		}
 	}
 

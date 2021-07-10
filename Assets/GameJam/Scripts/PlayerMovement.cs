@@ -72,9 +72,20 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void PlayerPull()
+	void PlayerPull()
     {
         if(pullPressed == true)  // 当按下空格
         {
+			if (headerBall == null)
+			{
+				headerBall = GameManager.Instance.bodyBallController.GetHead();
+				ballRb = headerBall.GetComponent<Rigidbody2D>();
+			}
+			if (ballRb == null)
+			{
+				ballRb = headerBall.GetComponent<Rigidbody2D>();
+			}
+
             direction = transform.position - headerBall.transform.position;  // 获取角色与header球的方向
             direction = direction.normalized;  // 方向向量单位化
             ballRb.AddForce(direction * pullForce,ForceMode2D.Impulse);
@@ -82,10 +93,12 @@ public class PlayerMovement : MonoBehaviour
             
             
         }
-    }
+
+		// 播放音效
+	}
 
 
-    void FlipDirection()  //控制角色行动时贴图的方向
+	void FlipDirection()  //控制角色行动时贴图的方向
     {
         if (xVelocity < 0)
         {
