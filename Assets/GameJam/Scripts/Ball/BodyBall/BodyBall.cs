@@ -37,7 +37,6 @@ public class BodyBall : MonoBehaviour
 		spriteRender.enabled = false;
 	}
 
-
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if (collision.tag == "ItemBall" && isHead == true)
