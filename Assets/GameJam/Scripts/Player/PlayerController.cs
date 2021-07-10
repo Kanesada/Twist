@@ -22,21 +22,26 @@ public class PlayerController : MonoBehaviour
 		rb = GetComponent<Rigidbody2D>();  //引用角色刚体
 		coll = GetComponent<CircleCollider2D>();
 		hinge = GetComponent<HingeJoint2D>();
+		hinge.enabled = false;
 	}
 
 	
 	public void StartPullBodyBall()
 	{
-		hinge.enabled = true;
+		//hinge.enabled = true;
+		//var head = GameManager.Instance.bodyBallController.GetHead();
+		//var headRig = head.GetComponent<Rigidbody2D>();
+		//hinge.connectedBody = headRig;
+
 		var head = GameManager.Instance.bodyBallController.GetHead();
 		var headRig = head.GetComponent<Rigidbody2D>();
-		hinge.connectedBody = headRig;
+		headRig.AddForce(((Vector2)transform.position - headRig.position));
 	}
 
 	public void EndPullBodyBall()
 	{
-		hinge.enabled = false;
-		hinge.connectedBody = null;
+		//hinge.enabled = false;
+		//hinge.connectedBody = null;
 	}
 
 	private void Update()
