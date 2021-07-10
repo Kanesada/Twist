@@ -10,10 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd22158b8c471094d9dfd3b4a74dc4b1, type: 3}
-  m_Name: Level2
+  m_Name: Level1 1
   m_EditorClassIdentifier: 
-  levelNumber: 0
-  initialBallCount: 0
-  initialBallPosition: []
-  firstBodyBallGenPosition: {x: 0, y: 0, z: 0}
+  levelNumber: 1
+  initialBallCount: 3
+  initialBallPosition:
+  - {x: -5.37, y: 1.92, z: 0}
+  - {x: 1.78, y: 3.3, z: 0}
+  - {x: 3.37, y: -1.87, z: 0}
+  firstBodyBallGenPosition: {x: -4.24, y: 8.71, z: 0}
   playerGenPosition: {x: 0, y: 0, z: 0}

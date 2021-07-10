@@ -45,7 +45,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelDatas:
   - {fileID: 11400000, guid: 6db7c2e59b65e9245af0dca7e1ef986e, type: 2}
-  - {fileID: 11400000, guid: 5197d20aaa5ab584386bcc4d44e74460, type: 2}
+  - {fileID: 11400000, guid: 4a94efa87d7b3df4f899d9f07b744d8c, type: 2}
   playerPrefab: {fileID: 3122919994894445269, guid: 1f521444aaa9e3e4d9feff33bd29f8df, type: 3}
+  bodyBallPrefab: {fileID: 1348991469034567537, guid: 0afffd2ec7841da4b9c3188dd0c33240, type: 3}
   BodyBallPrefabs:
   - {fileID: 1348991469034567537, guid: 0afffd2ec7841da4b9c3188dd0c33240, type: 3}
+  - {fileID: 1348991469034567537, guid: 0afffd2ec7841da4b9c3188dd0c33240, type: 3}
+  - {fileID: 1348991469034567537, guid: 0afffd2ec7841da4b9c3188dd0c33240, type: 3}
+  totalTime: 0

@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
 	[Header("ÅäÖÃÊı¾İ")]
 	public LevelData[] levelDatas;
 	public GameObject playerPrefab;
+	public GameObject bodyBallPrefab;
 	public GameObject[] BodyBallPrefabs;
 
 
