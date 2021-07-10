@@ -31,8 +31,8 @@ public class GameManager : MonoBehaviour
 	public GameObject[] BodyBallPrefabs;
 
 
-	private GamerData gamerData;
-	private BodyBallController bodyBallController;
+	public GamerData gamerData;
+	public BodyBallController bodyBallController;
 
 
 	void OnEnable()
@@ -79,5 +79,10 @@ public class GameManager : MonoBehaviour
 	}
 
 
+
+	public void AddBodyBall(BallType type)
+	{
+		print("AddBodyBall");
+	}
 
 }

@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class BodyBall : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public BallType ballType;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public bool isHead;
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.tag == "ItemBall" && isHead == true)
+		{
+			var ballType = collision.GetComponent<ItemBall>().ballType;
+			Destroy(collision.gameObject);
+
+			GameManager.Instance.AddBodyBall(ballType);
+		}
+	}
 }

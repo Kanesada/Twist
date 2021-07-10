@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody2D>();  //引用角色刚体
 		coll = GetComponent<CircleCollider2D>();
-
 	}
 
 	// Update is called once per frame
@@ -39,6 +38,13 @@ public class PlayerController : MonoBehaviour
 		yVelocity = Input.GetAxis("Vertical");  //获取水平方向移动指令。-1f~1f 不按的时候自动归0 因此不会出现滑动
 		rb.velocity = new Vector2(xVelocity * moveSpeed, yVelocity * moveSpeed);
 
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			
+		}
 	}
+
+
+	
 
 }
