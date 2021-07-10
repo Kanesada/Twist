@@ -17,17 +17,8 @@ public class BodyBall : MonoBehaviour
 	{
 		this.isHead = isHead;
 		hingeJoint2D = GetComponent<HingeJoint2D>();
-		if (isTail)
-		{ 
-			hingeJoint2D.enabled = false;
-			Deactive();
-		}
-		else
-		{
-			hingeJoint2D.enabled = true;
-			Active();
-		}
 		hingeJoint2D.connectedBody = tailRig;
+		Deactive();
 	}
 
 	public void SetNext(Rigidbody2D nextRig)
@@ -38,12 +29,14 @@ public class BodyBall : MonoBehaviour
 
 	public void Active(BallType type = BallType.None)
 	{
+		hingeJoint2D.enabled = true;
 		spriteRender.enabled = true;
 		gameObject.layer = LayerMask.NameToLayer("BodyBall");
 	}
 
 	public void Deactive()
 	{
+		hingeJoint2D.enabled = false;
 		spriteRender.enabled = false;
 		gameObject.layer = LayerMask.NameToLayer("VirtualBall");
 	}
@@ -57,19 +50,32 @@ public class BodyBall : MonoBehaviour
 
 			GameManager.Instance.AddBodyBall(ballType);
 		}
-		else if (collision.tag == "Traps") // 头或者身碰到陷阱
-		{
-			GameManager.Instance.RemoveBodyBall(this);
-		}
-		else if (collision.tag == "WinZone" && isHead == true) // 头碰到关卡出口
-		{
-			// 播放音效
-		}
-		else if (collision.tag == "Obstacle") // 碰到障碍物
-		{
-			// 播放音效
-		}
+		
 
 
 	}
+
+	private void nCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.tag == "Traps") // 头或者身碰到陷阱
+		{
+			GameManager.Instance.RemoveBodyBall(this);
+		}
+
+		else if (collision.gameObject.tag == "Obstacle") // 碰到障碍物
+		{
+			// 播放音效
+		}
+	}
+
+
+
+
+	private void Update()
+	{
+		float radius = 1f;
+		var pos = transform.position;
+		Debug.DrawLine(pos, pos + Vector3.one);
+	}
+
 }
