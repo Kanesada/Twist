@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd22158b8c471094d9dfd3b4a74dc4b1, type: 3}
+  m_Name: Level1
+  m_EditorClassIdentifier: 
+  levelNumber: 1
+  initialBallCount: 3
+  initialBallPosition:
+  - {x: -2.384878, y: 3.003531, z: -0.97242355}
+  - {x: -4.24, y: 8.71, z: 0}
+  firstBodyBallGenPosition: {x: -4.24, y: 8.71, z: 0}
+  playerGenPosition: {x: 0, y: 0, z: 0}
