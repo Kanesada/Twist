@@ -35,6 +35,7 @@ public class BodyBallController
 		var hingeJoint2D = tailRig.GetComponent<HingeJoint2D>();
 		hingeJoint2D.enabled = false;
 		hingeJoint2D.connectedBody = null;
+		tail.GetComponent<BodyBall>().Init(false, null, true);
 
 		// Éú³ÉĞéÄâÇò´®
 		for (int i = 0; i < maxCount; i++)

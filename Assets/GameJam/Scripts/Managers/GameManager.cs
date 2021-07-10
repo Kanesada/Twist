@@ -110,7 +110,14 @@ public class GameManager : MonoBehaviour
 	public void RemoveBodyBall(BodyBall bodyBall)
 	{
 		int index = bodyBallController.GetBodyBallIndex(bodyBall);
-		gamerData.RemoveBodyBall(index);
+		if (index == 0) //意味着头撞到了陷阱
+		{
+			// 游戏结束？
+			Debug.LogError("游戏结束 TODO");
+			return;
+		}
+
+		gamerData.RemoveRestBodyBall(index);
 		bodyBallController.ChangeBodyBallVisiable();
 	}
 

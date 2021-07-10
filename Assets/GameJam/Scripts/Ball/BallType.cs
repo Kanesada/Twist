@@ -7,6 +7,7 @@ public enum BallType
 	Knowledge,
 	Smoke,
 	Illness,
+	None,
 }
 
 public enum ItemBallType

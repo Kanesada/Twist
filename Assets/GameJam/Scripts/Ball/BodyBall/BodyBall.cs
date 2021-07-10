@@ -13,11 +13,20 @@ public class BodyBall : MonoBehaviour
 
 	public HingeJoint2D hingeJoint2D;
 
-	public void Init(bool isHead, Rigidbody2D tailRig)
+	public void Init(bool isHead, Rigidbody2D tailRig, bool isTail = false)
 	{
 		this.isHead = isHead;
 		hingeJoint2D = GetComponent<HingeJoint2D>();
-		hingeJoint2D.enabled = true;
+		if (isTail)
+		{ 
+			hingeJoint2D.enabled = false;
+			Deactive();
+		}
+		else
+		{
+			hingeJoint2D.enabled = true;
+			Active();
+		}
 		hingeJoint2D.connectedBody = tailRig;
 	}
 
@@ -27,7 +36,7 @@ public class BodyBall : MonoBehaviour
 		hingeJoint2D.connectedBody = nextRig;
 	}
 
-	public void Active(BallType type)
+	public void Active(BallType type = BallType.None)
 	{
 		spriteRender.enabled = true;
 		gameObject.layer = LayerMask.NameToLayer("BodyBall");
@@ -41,6 +50,7 @@ public class BodyBall : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
+		// 头部吃到道具
 		if (collision.tag == "ItemBall" && isHead == true)
 		{
 			var ballType = collision.GetComponent<ItemBall>().ballType;
@@ -49,9 +59,13 @@ public class BodyBall : MonoBehaviour
 			GameManager.Instance.AddBodyBall(ballType);
 		}
 
+		// 头或者身碰到陷阱
 		if (collision.tag == "Traps")
 		{
-			
+			GameManager.Instance.RemoveBodyBall(this);
+			// 播放音效
 		}
+		
+
 	}
 }
