@@ -2,10 +2,10 @@
 public enum BallType
 {
 	Life,
+	Love,
 	Money,
-	Emotion,
-	Knowledge,
+	Virus,
 	Smoke,
-	Illness,
+	Book,
 	None,
 }
