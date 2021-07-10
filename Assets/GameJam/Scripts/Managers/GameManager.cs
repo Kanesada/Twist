@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
 	}
 	#endregion
 
-	[Header("��������")]
 	public LevelData[] levelDatas;
 	public GameObject playerPrefab;
 	public GameObject headBallPrefab;
@@ -34,13 +33,12 @@ public class GameManager : MonoBehaviour
 	public GameObject[] BodyBallPrefabs;
 
 
-	[Header("��Ϸʱ��")]
 	public int totalTime;
 
 	[Header("Lost Ball animation")]
 	public GameObject lostBallVFXPrefab;
 
-	// �������
+
 	public GamerData gamerData;
 
 	public BodyBallControllerNew bodyBallController;
@@ -107,17 +105,16 @@ public class GameManager : MonoBehaviour
 		bodyBallController.ChangeBodyBallVisiable();
 		AudioManager.PlayBallAddAudio();  // Add Ball audio
 
-		// ������Ч
 	}
 
 	public void RemoveBodyBall(BodyBall bodyBall)
 	{
 		int index = bodyBallController.GetBodyBallIndex(bodyBall);
-		if (index == 0) //��ζ��ͷײ��������
+		if (index == 0) 
 		{
-			// ��Ϸ������
-			Debug.LogError("��Ϸ���� TODO");
-			// ������Ч
+
+			Debug.LogError(" TODO");
+			// 
 			return;
 		}
 
@@ -125,12 +122,12 @@ public class GameManager : MonoBehaviour
 		bodyBallController.ChangeBodyBallVisiable();
 		Instantiate(lostBallVFXPrefab, bodyBall.transform.position, bodyBall.transform.rotation);  //Lost Ball Animation
 		AudioManager.PlayBallLostAudio();   // Lost Ball Audio
-		// ������Ч
+		//
 	}
 
 
 
-	// ��������һ���ؿ�ʱ���ã�����ؿ������Լ���ѡ��Ľ��
+
 	public void OnLevelUp(string sceneName,EndingData data)
 	{
 		gamerData.LevelUp();
@@ -195,12 +192,12 @@ public class GameManager : MonoBehaviour
 		}
 		if (totalTime == 100)
 		{
-			//ִ�н�������
+
 
 		}
 
 
-		//Test ����
+
 		//if (Input.GetKeyDown(KeyCode.R))
 		//{
 		//	bodyBallController.GenerateBody(4);
