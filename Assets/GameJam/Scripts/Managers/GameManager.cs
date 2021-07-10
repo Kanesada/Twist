@@ -31,8 +31,9 @@ public class GameManager : MonoBehaviour
 	public GameObject[] BodyBallPrefabs;
 
 
-	[HideInInspector]
-	public GamerData gamerData;
+
+	private GamerData gamerData;
+	private BodyBallController bodyBallController;
 
 
 	void OnEnable()
@@ -44,6 +45,8 @@ public class GameManager : MonoBehaviour
 	private void Start()
 	{
 		gamerData = new GamerData();
+		bodyBallController = new BodyBallController();
+
 		print(levelDatas[0].levelNumber);
 		print(levelDatas[0].initialBallPosition[0]);
 
