@@ -59,9 +59,9 @@ public class PlayerMovement : MonoBehaviour
         xVelocity = Input.GetAxis("Horizontal");  //获取水平方向移动指令。-1f~1f 不按的时候自动归0 因此不会出现滑动
         yVelocity = Input.GetAxis("Vertical");  //获取水平方向移动指令。-1f~1f 不按的时候自动归0 因此不会出现滑动
         rb.velocity = new Vector2(xVelocity * moveSpeed, yVelocity * moveSpeed);
-        if (rb.velocity.x != 0 && rb.velocity.y != 0) AudioManager.PlayFootstepAudio(); //移动时播放脚步声
+        if (rb.velocity.x != 0 || rb.velocity.y != 0) AudioManager.PlayFootstepAudio(); //移动时播放脚步声
 
-        if(xVelocity != 0 || yVelocity != 0)
+        if((rb.velocity.x != 0f) || (rb.velocity.y != 0f))
         {
             if (xVelocity != 0)
             {

@@ -9,6 +9,7 @@ TagManager:
   - ItemBall
   - Traps
   - WinZone
+  - HeadBall
   layers:
   - Default
   - TransparentFX

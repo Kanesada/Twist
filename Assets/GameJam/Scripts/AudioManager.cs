@@ -64,6 +64,7 @@ public class AudioManager : MonoBehaviour
     {
         int index = Random.Range(0, current.walkStepClips.Length); // 在脚步声数组中随机选择脚步声进行播放
         current.playerSource.clip = current.walkStepClips[index];
+        current.playerSource.volume = 0.3f;
         current.playerSource.Play();
     }
 
