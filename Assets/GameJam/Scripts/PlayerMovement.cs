@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private CircleCollider2D coll;
     private Vector2 direction;
     private Rigidbody2D ballRb;
+    private Animator anim;
 
     [Header("Header 球")]
     public GameObject headerBall;
@@ -31,20 +32,26 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();  //引用角色刚体
         coll = GetComponent<CircleCollider2D>();  //角色碰撞
         ballRb = headerBall.GetComponent<Rigidbody2D>();  //获取header球的刚体
+        anim = GetComponent<Animator>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Jump")) pullPressed = true;
-          
-
+        if (Input.GetButtonDown("Jump"))
+        {
+            pullPressed = true;
+            anim.SetBool("pull", true);
+        }
+        if(Input.GetButtonUp("Jump")) anim.SetBool("pull", false);
+        
     }
     private void FixedUpdate()
     {
         PlayerRun();
         PlayerPull();
+        FlipDirection();
     }
 
     void PlayerRun()
@@ -54,32 +61,59 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(xVelocity * moveSpeed, yVelocity * moveSpeed);
         if (rb.velocity.x != 0 && rb.velocity.y != 0) AudioManager.PlayFootstepAudio(); //移动时播放脚步声
 
+        if(xVelocity != 0 || yVelocity != 0)
+        {
+            if (xVelocity != 0)
+            {
+                anim.SetFloat("running", Mathf.Abs(xVelocity));
+            }
+            else anim.SetFloat("running", Mathf.Abs(yVelocity));
+        }
+
     }
 
     void PlayerPull()
+	void PlayerPull()
     {
         if(pullPressed == true)  // 当按下空格
         {
+			if (headerBall == null)
+			{
+				headerBall = GameManager.Instance.bodyBallController.GetHead();
+				ballRb = headerBall.GetComponent<Rigidbody2D>();
+			}
+			if (ballRb == null)
+			{
+				ballRb = headerBall.GetComponent<Rigidbody2D>();
+			}
+
             direction = transform.position - headerBall.transform.position;  // 获取角色与header球的方向
             direction = direction.normalized;  // 方向向量单位化
             ballRb.AddForce(direction * pullForce,ForceMode2D.Impulse);
             AudioManager.PlayPullAudio();  //播放拉音效
             pullPressed = false;
+            
+            
         }
-    }
+
+		// 播放音效
+	}
 
 
-    void FlipDirection()  //控制角色行动时贴图的方向
+	void FlipDirection()  //控制角色行动时贴图的方向
     {
-        if (xVelocity > 0)
+        if (xVelocity < 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
-        if (xVelocity < 0)
+        if (xVelocity > 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
     }
+
+
+  
 
 
 

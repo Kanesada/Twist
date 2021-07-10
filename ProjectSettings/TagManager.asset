@@ -5,11 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - BodyBall
-  - Track
   - Obstacle
   - ItemBall
-  - HarmEdge
   - Traps
+  - WinZone
   layers:
   - Default
   - TransparentFX
@@ -20,7 +19,7 @@ TagManager:
   - BodyBall
   - Scene
   - Player
-  - 
+  - VirtualBall
   - 
   - 
   - 
