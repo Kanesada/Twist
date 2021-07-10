@@ -288,6 +288,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0410a079a9f784745b52bca10c0c7657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelDatas:
+  - {fileID: 11400000, guid: 6db7c2e59b65e9245af0dca7e1ef986e, type: 2}
+  playerPrefab: {fileID: 0}
+  BodyBallPrefabs:
+  - {fileID: 0}
 --- !u!4 &372266871
 Transform:
   m_ObjectHideFlags: 0
