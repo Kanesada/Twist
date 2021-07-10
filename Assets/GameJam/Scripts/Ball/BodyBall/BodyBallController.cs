@@ -21,7 +21,7 @@ public class BodyBallController
 
 		this.maxCount = maxCount;
 
-		var bodyTypeList = GameManager.Instance.gamerData.bodyBallList;
+		var bodyTypeList = GameManager.Instance.gamerData.BodyBallList;
 		var headballprefab = GameManager.Instance.headBallPrefab;
 		var bodyballprefab = GameManager.Instance.bodyBallPrefab;
 
@@ -70,7 +70,7 @@ public class BodyBallController
 
 	public void ChangeBodyBallVisiable()
 	{
-		var bodyTypeList = GameManager.Instance.gamerData.bodyBallList;
+		var bodyTypeList = GameManager.Instance.gamerData.BodyBallList;
 
 		for (int i = 0; i < bodyBallList.Count; i++)
 		{
