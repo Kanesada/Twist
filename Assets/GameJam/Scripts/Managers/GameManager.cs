@@ -33,9 +33,12 @@ public class GameManager : MonoBehaviour
 	public GameObject playerPrefab;
 	public GameObject[] BodyBallPrefabs;
 
-	
+	void OnEnable()
+	{
+		SceneManager.sceneLoaded += OnSceneLoaded;
+	}
 
-	
+
 	private void Start()
 	{
 		gamerData = new GamerData();
@@ -57,6 +60,12 @@ public class GameManager : MonoBehaviour
 		{
 			GenerateLevel1();
 		}
+	}
+
+
+	void OnDisable()
+	{
+		SceneManager.sceneLoaded -= OnSceneLoaded;
 	}
 
 
