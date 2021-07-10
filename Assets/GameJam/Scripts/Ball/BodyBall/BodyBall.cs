@@ -8,6 +8,22 @@ public class BodyBall : MonoBehaviour
 
 	public bool isHead;
 
+	public HingeJoint2D hingeJoint2D;
+
+	public void Init(bool isHead, Rigidbody2D tailRig)
+	{
+		this.isHead = isHead;
+		hingeJoint2D = GetComponent<HingeJoint2D>();
+		hingeJoint2D.enabled = true;
+		hingeJoint2D.connectedBody = tailRig;
+	}
+
+	public void SetNext(Rigidbody2D nextRig)
+	{
+		hingeJoint2D.enabled = true;
+		hingeJoint2D.connectedBody = nextRig;
+	}
+
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if (collision.tag == "ItemBall" && isHead == true)
@@ -16,6 +32,11 @@ public class BodyBall : MonoBehaviour
 			Destroy(collision.gameObject);
 
 			GameManager.Instance.AddBodyBall(ballType);
+		}
+
+		if (collision.tag == "Traps")
+		{
+			
 		}
 	}
 }

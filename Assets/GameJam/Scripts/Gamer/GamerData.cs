@@ -8,10 +8,15 @@ using UnityEngine;
 public class GamerData 
 {
 
+	public void Init()
+	{
+		bodyBallList.Add(BallType.Life);
+	}
+
 	/// <summary>
 	/// 玩家吃到的球
 	/// </summary>
-	public List<BodyBallType> bodyBallList = new List<BodyBallType>();
+	public List<BallType> bodyBallList = new List<BallType>();
 	
 	/// <summary>
 	/// 玩家已经选择的结局

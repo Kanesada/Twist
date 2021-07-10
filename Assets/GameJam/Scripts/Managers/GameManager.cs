@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
 	[Header("≈‰÷√ ˝æ›")]
 	public LevelData[] levelDatas;
 	public GameObject playerPrefab;
+	public GameObject bodyBallPrefab;
+
 	public GameObject[] BodyBallPrefabs;
 
 
@@ -44,6 +46,8 @@ public class GameManager : MonoBehaviour
 	private void Start()
 	{
 		gamerData = new GamerData();
+		gamerData.Init();
+
 		bodyBallController = new BodyBallController();
 
 		print(levelDatas[0].levelNumber);
@@ -55,17 +59,22 @@ public class GameManager : MonoBehaviour
 
 	private void TestRollABallScene()
 	{
-
+		bodyBallController.GenerateBody(3);
 	}
 
 	private void GenerateLevel1()
 	{
+		print(levelDatas[0].initialBallCount);
 		for(int i = 0;i< levelDatas[0].initialBallCount; i++)
         {
 			Vector3 pos = levelDatas[0].initialBallPosition[i];
-			
-			Instantiate(BodyBallPrefabs[i], pos, Quaternion.identity);
-			
+			print(pos);
+
+
+			var go = Instantiate(BodyBallPrefabs[0], pos, Quaternion.identity);
+			go.transform.position = pos;
+
+			print(go.transform.position);
 
 		}
 		
