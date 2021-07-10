@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BodyBall : MonoBehaviour
 {
+	public LineRenderer lineRenderer;
+
 	public BallType ballType;
 
 	public bool isHead;
@@ -13,10 +15,11 @@ public class BodyBall : MonoBehaviour
 	private Animator anim;
 	public HingeJoint2D hingeJoint2D;
 
+	public BodyBall nextBodyBall;
 
+	public bool isBodyBall;
 
-
-    public void Init(bool isHead, Rigidbody2D tailRig, bool isTail = false)
+	public void Init(bool isHead, Rigidbody2D tailRig, bool isTail = false)
 	{
 		this.isHead = isHead;
 		hingeJoint2D = GetComponent<HingeJoint2D>();
@@ -28,10 +31,12 @@ public class BodyBall : MonoBehaviour
 	{
 		hingeJoint2D.enabled = true;
 		hingeJoint2D.connectedBody = nextRig;
+		nextBodyBall = nextRig.GetComponent<BodyBall>();
 	}
 
 	public void Active(BallType type)
 	{
+		isBodyBall = true;
 		hingeJoint2D.enabled = true;
 		spriteRender.enabled = true;
 		gameObject.layer = LayerMask.NameToLayer("BodyBall");
@@ -71,6 +76,7 @@ public class BodyBall : MonoBehaviour
 
     public void Deactive()
 	{
+		isBodyBall = false;
 		hingeJoint2D.enabled = false;
 		spriteRender.enabled = false;
 		gameObject.layer = LayerMask.NameToLayer("VirtualBall");
@@ -78,38 +84,60 @@ public class BodyBall : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.tag == "ItemBall" && isHead == true) // Í·²¿³Ôµ½µÀ¾ß
+		if (isBodyBall == false)
+			return;
+
+		if (collision.tag == "ItemBall" && isHead == true) // Í·ï¿½ï¿½ï¿½Ôµï¿½ï¿½ï¿½ï¿½ï¿½
 		{
 			var ballType = collision.GetComponent<ItemBall>().ballType;
 			Destroy(collision.gameObject);
 
 			GameManager.Instance.AddBodyBall(ballType);
 		}
-		else if (collision.tag == "Traps") // Í·»òÕßÉíÅöµ½ÏİÚå
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (isBodyBall == false)
+			return;
+
+		if (collision.gameObject.tag == "Traps") // Í·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		{
 			GameManager.Instance.RemoveBodyBall(this);
-			//¼õÉÙÉúÃü
+			//å‡å°‘ç”Ÿå‘½
 			GameObject.Find("Canvas").GetComponent<UIManager>().LoseLife();
 		}
-		else if (collision.tag == "WinZone" && isHead == true) // Í·Åöµ½¹Ø¿¨³ö¿Ú
-		{
-			// ²¥·ÅÒôĞ§
-		}
-		else if (collision.tag == "Obstacle") // Åöµ½ÕÏ°­Îï
-		{
-			// ²¥·ÅÒôĞ§
-		}
 
-
+		else if (collision.gameObject.tag == "Obstacle") // ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ï¿½
+		{
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ§
+		}
 	}
+
 
 
 
 	private void Update()
 	{
-		float radius = 1f;
 		var pos = transform.position;
 		Debug.DrawLine(pos, pos + Vector3.one);
+
+
+		if (lineRenderer != null && lineRenderer.enabled == true && nextBodyBall != null && nextBodyBall.isBodyBall == true)
+		{ 
+			List<Vector3> points = new List<Vector3>();
+			var pos1 = this.transform.position;
+			pos1.z = -1;
+			points.Add(pos1);
+			var pos2 = nextBodyBall.transform.position;
+			pos2.z = -1;
+			points.Add(pos2);
+
+			lineRenderer.SetPositions(points.ToArray());
+
+			lineRenderer.startWidth = 0.1f;
+			lineRenderer.endWidth = 0.1f;
+		}
 	}
 
 }

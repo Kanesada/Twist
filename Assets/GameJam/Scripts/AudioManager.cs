@@ -51,6 +51,8 @@ public class AudioManager : MonoBehaviour
     public static void PlayWinAudio() // 播放胜利音效
     {
         current.musicSource.clip = current.winClip;
+        current.musicSource.volume = 0.5f;
+        current.musicSource.loop = false;
         current.musicSource.Play();
     }
 
@@ -64,6 +66,7 @@ public class AudioManager : MonoBehaviour
     {
         int index = Random.Range(0, current.walkStepClips.Length); // 在脚步声数组中随机选择脚步声进行播放
         current.playerSource.clip = current.walkStepClips[index];
+        current.playerSource.volume = 0.3f;
         current.playerSource.Play();
     }
 
@@ -93,7 +96,7 @@ public class AudioManager : MonoBehaviour
 
     public static void PlayBallLostAudio()  //播放球减少 消失时的音效
     {
-        current.ballSource.clip = current.ballAddClip;
+        current.ballSource.clip = current.ballLostAudio;
         current.ballSource.Play();
     }
 

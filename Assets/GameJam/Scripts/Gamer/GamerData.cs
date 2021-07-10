@@ -39,8 +39,14 @@ public class GamerData
 
 	public void RemoveRestBodyBall(int index)
 	{
+		if (index == 0)
+			return;
 		while(BodyBallList.Count > index)
 		{
+			if (BodyBallList.Count == 1)
+			{
+				Debug.LogWarning("头不应该被删除");
+			}
 			BodyBallList.RemoveAt(BodyBallList.Count - 1);
 		}
 	}

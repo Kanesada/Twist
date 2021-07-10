@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 	}
 	#endregion
 
-	[Header("ÅäÖÃÊı¾İ")]
+	[Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
 	public LevelData[] levelDatas;
 	public GameObject playerPrefab;
 	public GameObject headBallPrefab;
@@ -34,10 +34,13 @@ public class GameManager : MonoBehaviour
 	public GameObject[] BodyBallPrefabs;
 
 
-	[Header("ÓÎÏ·Ê±¼ä")]
+	[Header("ï¿½ï¿½Ï·Ê±ï¿½ï¿½")]
 	public int totalTime;
 
-	// Íæ¼ÒÊı¾İ
+
+	public GameObject lostBallFVX;
+
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public GamerData gamerData;
 
 	public BodyBallControllerNew bodyBallController;
@@ -45,6 +48,8 @@ public class GameManager : MonoBehaviour
 	private bool timeFlag;
 
 	private List<EndingData> endingList = new List<EndingData>();
+
+	private List<EndingData> levelEndingList;
 
 
 	void OnEnable()
@@ -55,15 +60,8 @@ public class GameManager : MonoBehaviour
 		gamerData.Init();
 
 		LoadEngindData();
-		var endingCanBeSelectedList = GetEndingDatas();
 
-		print(levelDatas[0].levelNumber);
 		timeFlag = false;
-	}
-
-	private void GeneratePlayer(Vector3 position)
-	{
-		var player = GameObject.Instantiate(playerPrefab, position, Quaternion.identity);
 	}
 
 	private void GenerateLevel1()
@@ -87,9 +85,20 @@ public class GameManager : MonoBehaviour
 	{
 		if (scene.name == ConstData.SceneRunABall)
 		{
+			gamerData.LevelUp();
 			GenerateLevel1();
 
+			// ï¿½ï¿½ï¿½ï¿½ï¿½Ğ³ï¿½ï¿½ï¿½ï¿½Ğ¿ï¿½Ñ¡ï¿½ï¿½ï¿½
+			levelEndingList = GetEndingDatas();
+			// ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ñ³¡¾ï¿½ï¿½ï¿½ï¿½Ğ³ï¿½ï¿½Ä½ï¿½ï¿½
 		}
+	}
+
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ø¿ï¿½Ê±ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½Ø¿ï¿½ï¿½ï¿½È¥ï¿½Ğ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½Ä½ï¿½ï¿½È¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½
+	public void OnLeaveLevel(string sceneName, EndingData data)
+	{
+		gamerData.ChoosenEndings.Add(data.number);
+		SceneManager.LoadScene(sceneName);
 	}
 
 
@@ -102,37 +111,29 @@ public class GameManager : MonoBehaviour
 	{
 		gamerData.AddBodyBall(type);
 		bodyBallController.ChangeBodyBallVisiable();
-
-		// ²¥·ÅÒôĞ§
+		AudioManager.PlayBallAddAudio();
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ§
 	}
 
 	public void RemoveBodyBall(BodyBall bodyBall)
 	{
 		int index = bodyBallController.GetBodyBallIndex(bodyBall);
 		GameObject.Find("Player").GetComponent<PlayerMovement>().CameraShake();
-		if (index == 0) //ÒâÎ¶×ÅÍ·×²µ½ÁËÏİÚå
+		if (index == 0) //æ„å‘³ç€å¤´æ’åˆ°äº†é™·é˜±
 		{
-			// ÓÎÏ·½áÊø£¿
-			Debug.LogError("ÓÎÏ·½áÊø TODO");
-			// ²¥·ÅÒôĞ§
+			// ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			Debug.LogError("ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ TODO");
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ§
+
 			return;
 		}
+		Instantiate(lostBallFVX, bodyBall.transform.position, bodyBall.transform.rotation);  // add lost ball animation
+		AudioManager.PlayBallLostAudio();
 
 		gamerData.RemoveRestBodyBall(index);
 		bodyBallController.ChangeBodyBallVisiable();
-		// ²¥·ÅÒôĞ§
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ§
 	}
-
-
-
-	// µ±½øÈëÏÂÒ»¸ö¹Ø¿¨Ê±µ÷ÓÃ£¬ÊäÈë¹Ø¿¨Ãû£¬ÒÔ¼°ËùÑ¡ÔñµÄ½á¾Ö
-	public void OnLevelUp(string sceneName,EndingData data)
-	{
-		gamerData.LevelUp();
-		gamerData.ChoosenEndings.Add(data.number);
-		SceneManager.LoadScene(sceneName);
-	}
-
 
 	private void LoadEngindData()
 	{
@@ -188,10 +189,14 @@ public class GameManager : MonoBehaviour
 
 			totalTime = int.Parse(GameObject.Find("Canvas").GetComponent<UIManager>().text_time.text);
 		}
-		
+		if (totalTime == 100)
+		{
+			//æ‰§è¡Œç»“æŸåŠ¨ç”»
+
+		}
 
 
-		//Test ´úÂë
+		//Test ï¿½ï¿½ï¿½ï¿½
 		//if (Input.GetKeyDown(KeyCode.R))
 		//{
 		//	bodyBallController.GenerateBody(4);
