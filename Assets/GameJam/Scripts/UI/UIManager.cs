@@ -19,10 +19,10 @@ public class UIManager : MonoBehaviour
 
     float timeSpeed = 0.0f;
     private int totalnow;
+	private bool hasLoseLifeThisFrame;
 
-
-    // Start is called before the first frame update
-    void Start()
+	// Start is called before the first frame update
+	void Start()
     {
         total_time.GetComponent<Text>().text = "100";
         lose_seconds = 10;
@@ -33,7 +33,9 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeSpeed += Time.deltaTime;
+		hasLoseLifeThisFrame = false;
+
+		timeSpeed += Time.deltaTime;
         //hour = (int)timeSpeed / 3600;
         //minute = ((int)timeSpeed - hour * 3600) / 60;
         //second = (int)timeSpeed - hour * 3600 - minute * 60;
@@ -53,10 +55,14 @@ public class UIManager : MonoBehaviour
 
     public void LoseLife()
     {
-        totalnow = int.Parse(total_time.GetComponent<Text>().text);
+		if (hasLoseLifeThisFrame == true)
+			return;
+
+		hasLoseLifeThisFrame = true;
+
+		totalnow = int.Parse(total_time.GetComponent<Text>().text);
         totalnow -= lose_seconds;
         total_time.GetComponent<Text>().text = totalnow.ToString();
-
 
     }
 
