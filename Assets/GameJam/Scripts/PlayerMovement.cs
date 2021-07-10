@@ -67,5 +67,18 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+    void FlipDirection()  //控制角色行动时贴图的方向
+    {
+        if (xVelocity > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        if (xVelocity < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+    }
+
+
 
 }

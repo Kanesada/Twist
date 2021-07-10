@@ -34,13 +34,7 @@ public class UIManager : MonoBehaviour
         //text_time.GetComponent<Text>().text= string.Format("{0:D3}:{1:D2}:{2:D2}", hour, minute, second);
         text_time.GetComponent<Text>().text = string.Format("{0}", timeSpeed.ToString("0"));
 
-        if (timeSpeed.ToString("0").Equals("100")){
-            //Ö´ÐÐ½áÊø¶¯»­
-
-        }
-
-
-
+       
 
 
 
