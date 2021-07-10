@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 	// Íæ¼ÒÊý¾Ý
 	public GamerData gamerData;
 
-	public BodyBallController bodyBallController;
+	public BodyBallControllerNew bodyBallController;
 
 	private bool timeFlag;
 	
@@ -49,14 +49,9 @@ public class GameManager : MonoBehaviour
 	void OnEnable()
 	{
 		SceneManager.sceneLoaded += OnSceneLoaded;
-	}
 
-
-	private void Start()
-	{
 		gamerData = new GamerData();
 		gamerData.Init();
-		bodyBallController = new BodyBallController();
 
 		print(levelDatas[0].levelNumber);
 		timeFlag = false;
@@ -72,7 +67,7 @@ public class GameManager : MonoBehaviour
 		timeFlag = true;
 		
 		
-		for(int i = 0;i< levelDatas[0].initialBallCount; i++)
+		for(int i = 0;i < levelDatas[0].initialBallCount; i++)
         {
 			Vector3 pos = levelDatas[0].initialBallPosition[i];
 			//print(pos);
@@ -80,7 +75,7 @@ public class GameManager : MonoBehaviour
 			
 		}
 
-		bodyBallController.GenerateBody(4);
+		//bodyBallController.GenerateBody(4);
 	}
 
 

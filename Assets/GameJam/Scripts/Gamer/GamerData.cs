@@ -30,8 +30,8 @@ public class GamerData
 		Level = 1;
 
 		BodyBallList.Add(BallType.Life);
-		//BodyBallList.Add(BallType.Life);
-		//BodyBallList.Add(BallType.Life);
+		BodyBallList.Add(BallType.Life);
+		BodyBallList.Add(BallType.Life);
 	}
 
 	public void AddBodyBall(BallType type)

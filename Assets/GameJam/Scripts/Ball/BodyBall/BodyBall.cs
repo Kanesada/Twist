@@ -17,17 +17,8 @@ public class BodyBall : MonoBehaviour
 	{
 		this.isHead = isHead;
 		hingeJoint2D = GetComponent<HingeJoint2D>();
-		if (isTail)
-		{ 
-			hingeJoint2D.enabled = false;
-			Deactive();
-		}
-		else
-		{
-			hingeJoint2D.enabled = true;
-			Active();
-		}
 		hingeJoint2D.connectedBody = tailRig;
+		Deactive();
 	}
 
 	public void SetNext(Rigidbody2D nextRig)
@@ -38,12 +29,14 @@ public class BodyBall : MonoBehaviour
 
 	public void Active(BallType type = BallType.None)
 	{
+		hingeJoint2D.enabled = true;
 		spriteRender.enabled = true;
 		gameObject.layer = LayerMask.NameToLayer("BodyBall");
 	}
 
 	public void Deactive()
 	{
+		hingeJoint2D.enabled = false;
 		spriteRender.enabled = false;
 		gameObject.layer = LayerMask.NameToLayer("VirtualBall");
 	}
@@ -72,4 +65,14 @@ public class BodyBall : MonoBehaviour
 
 
 	}
+
+
+
+	private void Update()
+	{
+		float radius = 1f;
+		var pos = transform.position;
+		Debug.DrawLine(pos, pos + Vector3.one);
+	}
+
 }
