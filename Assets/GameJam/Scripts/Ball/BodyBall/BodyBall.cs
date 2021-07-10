@@ -43,7 +43,7 @@ public class BodyBall : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.tag == "ItemBall" && isHead == true) // Í·²¿³Ôµ½µÀ¾ß
+		if (collision.tag == "ItemBall" && isHead == true) // Í·ï¿½ï¿½ï¿½Ôµï¿½ï¿½ï¿½ï¿½ï¿½
 		{
 			var ballType = collision.GetComponent<ItemBall>().ballType;
 			Destroy(collision.gameObject);
@@ -55,14 +55,14 @@ public class BodyBall : MonoBehaviour
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
 
-		if (collision.gameObject.tag == "Traps") // Í·»òÕßÉíÅöµ½ÏÝÚå
+		if (collision.gameObject.tag == "Traps") // Í·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		{
 			GameManager.Instance.RemoveBodyBall(this);
 		}
 
-		else if (collision.gameObject.tag == "Obstacle") // Åöµ½ÕÏ°­Îï
+		else if (collision.gameObject.tag == "Obstacle") // ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ï¿½
 		{
-			// ²¥·ÅÒôÐ§
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§
 		}
 	}
 
