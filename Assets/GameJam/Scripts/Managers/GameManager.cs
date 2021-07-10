@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
 
 	private List<EndingData> endingList = new List<EndingData>();
 
+	private List<EndingData> levelEndingList;
+
 
 	void OnEnable()
 	{
@@ -55,15 +57,8 @@ public class GameManager : MonoBehaviour
 		gamerData.Init();
 
 		LoadEngindData();
-		var endingCanBeSelectedList = GetEndingDatas();
 
-		print(levelDatas[0].levelNumber);
 		timeFlag = false;
-	}
-
-	private void GeneratePlayer(Vector3 position)
-	{
-		var player = GameObject.Instantiate(playerPrefab, position, Quaternion.identity);
 	}
 
 	private void GenerateLevel1()
@@ -89,6 +84,10 @@ public class GameManager : MonoBehaviour
 		{
 			gamerData.LevelUp();
 			GenerateLevel1();
+
+			// 用来列出所有可选结局
+			levelEndingList = GetEndingDatas();
+			// 用来选择场景中列出的结局
 		}
 	}
 
@@ -128,8 +127,6 @@ public class GameManager : MonoBehaviour
 		bodyBallController.ChangeBodyBallVisiable();
 		// 播放音效
 	}
-
-
 
 	private void LoadEngindData()
 	{
