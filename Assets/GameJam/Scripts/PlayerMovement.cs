@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private CircleCollider2D coll;
     private Vector2 direction;
     private Rigidbody2D ballRb;
+    private Animator anim;
 
     [Header("Header 球")]
     public GameObject headerBall;
@@ -31,20 +32,26 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();  //引用角色刚体
         coll = GetComponent<CircleCollider2D>();  //角色碰撞
         ballRb = headerBall.GetComponent<Rigidbody2D>();  //获取header球的刚体
+        anim = GetComponent<Animator>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Jump")) pullPressed = true;
-          
-
+        if (Input.GetButtonDown("Jump"))
+        {
+            pullPressed = true;
+            anim.SetBool("pull", true);
+        }
+        if(Input.GetButtonUp("Jump")) anim.SetBool("pull", false);
+        
     }
     private void FixedUpdate()
     {
         PlayerRun();
         PlayerPull();
+        FlipDirection();
     }
 
     void PlayerRun()
@@ -52,6 +59,15 @@ public class PlayerMovement : MonoBehaviour
         xVelocity = Input.GetAxis("Horizontal");  //获取水平方向移动指令。-1f~1f 不按的时候自动归0 因此不会出现滑动
         yVelocity = Input.GetAxis("Vertical");  //获取水平方向移动指令。-1f~1f 不按的时候自动归0 因此不会出现滑动
         rb.velocity = new Vector2(xVelocity * moveSpeed, yVelocity * moveSpeed);
+
+        if(xVelocity != 0 || yVelocity != 0)
+        {
+            if (xVelocity != 0)
+            {
+                anim.SetFloat("running", Mathf.Abs(xVelocity));
+            }
+            else anim.SetFloat("running", Mathf.Abs(yVelocity));
+        }
 
     }
 
@@ -63,21 +79,26 @@ public class PlayerMovement : MonoBehaviour
             direction = direction.normalized;  // 方向向量单位化
             ballRb.AddForce(direction * pullForce,ForceMode2D.Impulse);
             pullPressed = false;
+            
+            
         }
     }
 
 
     void FlipDirection()  //控制角色行动时贴图的方向
     {
-        if (xVelocity > 0)
+        if (xVelocity < 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
-        if (xVelocity < 0)
+        if (xVelocity > 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
     }
+
+
+  
 
 
 
