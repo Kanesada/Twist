@@ -50,13 +50,11 @@ public class BodyBall : MonoBehaviour
 
 			GameManager.Instance.AddBodyBall(ballType);
 		}
-		
-
-
 	}
 
-	private void nCollisionEnter2D(Collision2D collision)
+	private void OnCollisionEnter2D(Collision2D collision)
 	{
+
 		if (collision.gameObject.tag == "Traps") // 头或者身碰到陷阱
 		{
 			GameManager.Instance.RemoveBodyBall(this);

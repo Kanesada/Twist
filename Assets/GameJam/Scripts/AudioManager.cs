@@ -96,7 +96,7 @@ public class AudioManager : MonoBehaviour
 
     public static void PlayBallLostAudio()  //播放球减少 消失时的音效
     {
-        current.ballSource.clip = current.ballAddClip;
+        current.ballSource.clip = current.ballLostAudio;
         current.ballSource.Play();
     }
 

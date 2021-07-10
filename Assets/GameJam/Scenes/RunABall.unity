@@ -41559,41 +41559,41 @@ Transform:
   - {fileID: 304111111}
   - {fileID: 828170016}
   - {fileID: 1534538243}
-  - {fileID: 756314589}
+  - {fileID: 552777701}
   - {fileID: 899880950}
   - {fileID: 1610758749}
   - {fileID: 1931424860}
-  - {fileID: 899444986}
   - {fileID: 1396996582}
-  - {fileID: 552777701}
   - {fileID: 1180893849}
   - {fileID: 440540039}
-  - {fileID: 760254089}
   - {fileID: 538416848}
+  - {fileID: 756314589}
+  - {fileID: 760254089}
+  - {fileID: 899444986}
   - {fileID: 1429265948}
   - {fileID: 1221863108}
-  - {fileID: 1485995631}
   - {fileID: 1204632815}
   - {fileID: 533044685}
   - {fileID: 152211940}
   - {fileID: 1489358729}
-  - {fileID: 1493753084}
   - {fileID: 1783234174}
   - {fileID: 1360157544}
   - {fileID: 1856281521}
+  - {fileID: 1485995631}
   - {fileID: 32923311}
   - {fileID: 1205904301}
   - {fileID: 1689409954}
+  - {fileID: 1493753084}
   - {fileID: 262080376}
   - {fileID: 425074252}
   - {fileID: 1618025501}
   - {fileID: 1852975602}
   - {fileID: 1445874573}
   - {fileID: 478207195}
-  - {fileID: 1590765157}
   - {fileID: 1367213909}
   - {fileID: 740769942}
   - {fileID: 760092717}
+  - {fileID: 1590765157}
   - {fileID: 2142868650}
   - {fileID: 1597611764}
   - {fileID: 999119044}
@@ -55665,21 +55665,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1502675224}
     m_Modifications:
-    - target: {fileID: 1067925387514590370, guid: fe563a6337825b341a232e438ca7ecf7, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1067925387514590370, guid: fe563a6337825b341a232e438ca7ecf7, type: 3}
-      propertyPath: m_ConnectedRigidBody
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1067925387514590371, guid: fe563a6337825b341a232e438ca7ecf7, type: 3}
       propertyPath: m_Name
       value: Head Circle
-      objectReference: {fileID: 0}
-    - target: {fileID: 1067925387514590371, guid: fe563a6337825b341a232e438ca7ecf7, type: 3}
-      propertyPath: m_TagString
-      value: HeadBall
       objectReference: {fileID: 0}
     - target: {fileID: 1067925387514590431, guid: fe563a6337825b341a232e438ca7ecf7, type: 3}
       propertyPath: m_RootOrder
@@ -55944,6 +55932,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 390045763477080564, guid: b87a0b4d99e9b63448200ef08ccf825c, type: 3}
+      propertyPath: lostBallFVX
+      value: 
+      objectReference: {fileID: 1990042275984218, guid: aa9ea8a48bb27441597c8a4a55e18999, type: 3}
     - target: {fileID: 390045763477080564, guid: b87a0b4d99e9b63448200ef08ccf825c, type: 3}
       propertyPath: lostBallVFXPrefab
       value: 

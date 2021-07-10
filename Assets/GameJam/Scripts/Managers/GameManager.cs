@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 	}
 	#endregion
 
+	[Header("��������")]
 	public LevelData[] levelDatas;
 	public GameObject playerPrefab;
 	public GameObject headBallPrefab;
@@ -33,12 +34,13 @@ public class GameManager : MonoBehaviour
 	public GameObject[] BodyBallPrefabs;
 
 
+	[Header("��Ϸʱ��")]
 	public int totalTime;
 
-	[Header("Lost Ball animation")]
-	public GameObject lostBallVFXPrefab;
 
+	public GameObject lostBallFVX;
 
+	// �������
 	public GamerData gamerData;
 
 	public BodyBallControllerNew bodyBallController;
@@ -46,6 +48,8 @@ public class GameManager : MonoBehaviour
 	private bool timeFlag;
 
 	private List<EndingData> endingList = new List<EndingData>();
+
+	private List<EndingData> levelEndingList;
 
 
 	void OnEnable()
@@ -56,15 +60,8 @@ public class GameManager : MonoBehaviour
 		gamerData.Init();
 
 		LoadEngindData();
-		var endingCanBeSelectedList = GetEndingDatas();
 
-		print(levelDatas[0].levelNumber);
 		timeFlag = false;
-	}
-
-	private void GeneratePlayer(Vector3 position)
-	{
-		var player = GameObject.Instantiate(playerPrefab, position, Quaternion.identity);
 	}
 
 	private void GenerateLevel1()
@@ -88,9 +85,20 @@ public class GameManager : MonoBehaviour
 	{
 		if (scene.name == ConstData.SceneRunABall)
 		{
+			gamerData.LevelUp();
 			GenerateLevel1();
 
+			// �����г����п�ѡ���
+			levelEndingList = GetEndingDatas();
+			// ����ѡ�񳡾����г��Ľ��
 		}
+	}
+
+	// ��������һ���ؿ�ʱ���ã�����ؿ���ȥ�л��������Լ���ѡ��Ľ��ȥ�������·��
+	public void OnLeaveLevel(string sceneName, EndingData data)
+	{
+		gamerData.ChoosenEndings.Add(data.number);
+		SceneManager.LoadScene(sceneName);
 	}
 
 
@@ -103,38 +111,28 @@ public class GameManager : MonoBehaviour
 	{
 		gamerData.AddBodyBall(type);
 		bodyBallController.ChangeBodyBallVisiable();
-		AudioManager.PlayBallAddAudio();  // Add Ball audio
-
+		AudioManager.PlayBallAddAudio();
+		// ������Ч
 	}
 
 	public void RemoveBodyBall(BodyBall bodyBall)
 	{
 		int index = bodyBallController.GetBodyBallIndex(bodyBall);
-		if (index == 0) 
+		if (index == 0) //��ζ��ͷײ��������
 		{
+			// ��Ϸ������
+			Debug.LogError("��Ϸ���� TODO");
+			// ������Ч
 
-			Debug.LogError(" TODO");
-			// 
 			return;
 		}
+		Instantiate(lostBallFVX, bodyBall.transform.position, bodyBall.transform.rotation);  // add lost ball animation
+		AudioManager.PlayBallLostAudio();
 
 		gamerData.RemoveRestBodyBall(index);
 		bodyBallController.ChangeBodyBallVisiable();
-		Instantiate(lostBallVFXPrefab, bodyBall.transform.position, bodyBall.transform.rotation);  //Lost Ball Animation
-		AudioManager.PlayBallLostAudio();   // Lost Ball Audio
-		//
+		// ������Ч
 	}
-
-
-
-
-	public void OnLevelUp(string sceneName,EndingData data)
-	{
-		gamerData.LevelUp();
-		gamerData.ChoosenEndings.Add(data.number);
-		SceneManager.LoadScene(sceneName);
-	}
-
 
 	private void LoadEngindData()
 	{
@@ -192,12 +190,12 @@ public class GameManager : MonoBehaviour
 		}
 		if (totalTime == 100)
 		{
-
+			//ִ�н�������
 
 		}
 
 
-
+		//Test ����
 		//if (Input.GetKeyDown(KeyCode.R))
 		//{
 		//	bodyBallController.GenerateBody(4);
