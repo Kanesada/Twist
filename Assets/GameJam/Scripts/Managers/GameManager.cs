@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -42,9 +43,9 @@ public class GameManager : MonoBehaviour
 	public BodyBallControllerNew bodyBallController;
 
 	private bool timeFlag;
-	
 
-	
+	private List<EndingData> endingList = new List<EndingData>();
+
 
 	void OnEnable()
 	{
@@ -52,6 +53,9 @@ public class GameManager : MonoBehaviour
 
 		gamerData = new GamerData();
 		gamerData.Init();
+		LoadEngindData();
+
+		var list = GetEndingDatas();
 
 		print(levelDatas[0].levelNumber);
 		timeFlag = false;
@@ -139,15 +143,8 @@ public class GameManager : MonoBehaviour
 
 			GeneratePlayer(Vector3.one*5);
 		}
-		if (Input.GetKeyDown(KeyCode.T))
-		{
-			LoadEngindData();
-		}
 	}
 
-
-
-	private List<EndingData> endingList = new List<EndingData>();
 
 	public void LoadEngindData()
 	{
@@ -161,7 +158,9 @@ public class GameManager : MonoBehaviour
 			var list = new List<int>();
 			for (int i = 0; i < strs.Length; i++)
 			{
-				list.Add(int.Parse(strs[i]));
+				int needNumber = int.Parse(strs[i]); 
+				if (needNumber != 0)
+					list.Add(needNumber);
 			}
 			var endingData = new EndingData
 			{
@@ -172,13 +171,6 @@ public class GameManager : MonoBehaviour
 			};
 			endingList.Add(endingData);
 		}
-		
-		foreach(var ending in endingList)
-		{
-			print(ending.number);
-			print(ending.levelNeed);
-			print(ending.describe);
-		}
 	}
 
 	public List<EndingData> GetEndingDatas()
@@ -186,7 +178,19 @@ public class GameManager : MonoBehaviour
 		int level = gamerData.Level;
 		var choosenEndings = gamerData.ChoosenEndings;
 
-		return null;
+		var canBeSelectedEndingList = endingList.Where((data) =>
+		{
+			bool where = data.levelNeed == level;
+			if (where == false)
+				return false;
+			for (int i = 0; i < data.premiseNeed.Count; i++)
+			{
+				where = where && choosenEndings.Contains(data.premiseNeed[i]);
+			}
+			return where;
+		});
+
+		return new List<EndingData>(canBeSelectedEndingList);
 	}
 
 }
