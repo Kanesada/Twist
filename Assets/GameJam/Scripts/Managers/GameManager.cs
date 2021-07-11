@@ -109,7 +109,22 @@ public class GameManager : MonoBehaviour
 
 	private void GenerateLevel2()
 	{
-		uiManager.SetTimeText(nowTime,totalTime);
+		uiManager.SetTimeText(nowTime, totalTime);
+
+		var artShowEndingGO = GameObject.Find("艺术生牌子");
+		var peShowEndingGO = GameObject.Find("体育生牌子");
+
+		if (gamerData.ChoosenEndings[0] == 1) // 选择了体育生的路线
+		{
+			artShowEndingGO?.SetActive(false);
+			peShowEndingGO?.SetActive(true);
+		}
+		else if (gamerData.ChoosenEndings[0] == 2) // 选择了艺术生的路线
+		{
+			peShowEndingGO?.SetActive(false);
+			artShowEndingGO?.SetActive(true);
+		}
+
 	}
 
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
