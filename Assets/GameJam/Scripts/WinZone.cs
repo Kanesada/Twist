@@ -29,8 +29,12 @@ public class WinZone : MonoBehaviour
 			CoroutineHelper.Instance.DelayCall(2f, () =>
 			{
 				if (GameManager.Instance.gamerData.Level == 1)
-				{ 
+				{
 					GameManager.Instance.OnLeaveLevel(ConstData.SceneLevel02, endingData);
+				}
+				else if (GameManager.Instance.gamerData.Level == 2)
+				{
+					GameManager.Instance.OnLeaveLevel("", endingData);
 				}
 			});
         }

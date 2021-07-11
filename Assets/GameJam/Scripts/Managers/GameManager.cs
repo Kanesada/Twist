@@ -123,6 +123,9 @@ public class GameManager : MonoBehaviour
 	public void OnLeaveLevel(string sceneName, EndingData data)
 	{
 		gamerData.ChoosenEndings.Add(data.number);
+
+		if (string.IsNullOrEmpty(sceneName))
+			return;
 		SceneManager.LoadScene(sceneName);
 	}
 
@@ -260,6 +263,12 @@ public class GameManager : MonoBehaviour
 				Debug.Log(describe);
 			}
 		}
+	}
+
+
+	public void ReadyToBackToMainMenu()
+	{
+
 	}
 
 }
