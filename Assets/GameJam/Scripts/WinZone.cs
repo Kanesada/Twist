@@ -10,7 +10,7 @@ public class WinZone : MonoBehaviour
     public Vector2 direction; 
     Rigidbody2D headerBallRb;
 
-	private EndingData endingData;
+	public EndingData endingData { get; private set; }
 
     private void Start()
     {
@@ -26,7 +26,13 @@ public class WinZone : MonoBehaviour
             Debug.Log(" Force complete");
             AudioManager.PlayWinAudio(); // 播放胜利音效
 
-			GameManager.Instance.OnLeaveLevel(ConstData.SceneLevel02, endingData);
+			CoroutineHelper.Instance.DelayCall(2f, () =>
+			{
+				if (GameManager.Instance.gamerData.Level == 1)
+				{ 
+					GameManager.Instance.OnLeaveLevel(ConstData.SceneLevel02, endingData);
+				}
+			});
         }
     }
 
