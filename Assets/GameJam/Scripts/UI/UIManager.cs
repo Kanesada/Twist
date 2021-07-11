@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
     public Text total_time;
     public int lose_seconds;
     public GameObject endPanel;
+    public GameObject endText;
+
 
     float timeSpeed;
     private int totalnow;
@@ -62,6 +64,18 @@ public class UIManager : MonoBehaviour
             endPanel.SetActive(true);
             Time.timeScale = 0f;
             //结局panel 游戏暂停 播放新的音乐
+            List<string> endingList = new List<string>();
+            endingList = GameManager.Instance.GetChoosenEndingString();
+            foreach (var number in endingList)
+            {
+                endText.GetComponent<Text>().text += number;
+                print(number);
+            }
+                
+
+
+
+
         }
 
 

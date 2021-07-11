@@ -1047,6 +1047,7 @@ MonoBehaviour:
   total_time: {fileID: 960074635}
   lose_seconds: 0
   endPanel: {fileID: 109233639}
+  endText: {fileID: 415182321}
   now_int: 0
   total_int: 0
 --- !u!114 &1184498083

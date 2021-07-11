@@ -235,16 +235,22 @@ public class GameManager : MonoBehaviour
 
 	private void Update()
 	{
-		if (timeFlag == true)
-		{
 
-			totalTime = int.Parse(GameObject.Find("Canvas").GetComponent<UIManager>().text_time.text);
-		}
-		if (totalTime == 100)
+		try
 		{
-			//执行结束动画
+			if (timeFlag == true)
+			{
 
+				totalTime = int.Parse(GameObject.Find("Canvas").GetComponent<UIManager>().text_time.text);
+			}
 		}
+		catch (System.NullReferenceException ex)
+		{
+			Debug.Log("myLight was not set in the inspector");
+		}
+
+		
+		
 
 		if (Input.GetKeyDown(KeyCode.G))
 		{
