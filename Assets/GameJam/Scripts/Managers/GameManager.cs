@@ -221,6 +221,19 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	public List<string> GetChoosenEndingString()
+	{
+		List<string> endingDescribeList = new List<string>();
+		var choosenList = gamerData.ChoosenEndings;
+		foreach (var number in choosenList)
+		{
+			var index = number - 1;
+			var endingData = endingList[index];
+			endingDescribeList.Add(endingData.describe);
+		}
+		return endingDescribeList;
+	}
+
 	private void Update()
 	{
 		if (timeFlag == true)
@@ -234,7 +247,14 @@ public class GameManager : MonoBehaviour
 
 		}
 
-
+		if (Input.GetKeyDown(KeyCode.G))
+		{
+			var s = GetChoosenEndingString();
+			foreach(var describe in s)
+			{
+				Debug.Log(describe);
+			}
+		}
 	}
 
 }
