@@ -31,7 +31,7 @@ public static class Utils
 			if (string.IsNullOrEmpty(rowCollection[row]))
 				continue;
 			rowCollection[row] = rowCollection[row].Replace("\r", "");
-			string[] colCollection = rowCollection[row].Split(',');
+			string[] colCollection = rowCollection[row].Split('\t');
 
 			List<string> tempList = new List<string>();
 			for (int col = 0; col < colCollection.Length; col++)

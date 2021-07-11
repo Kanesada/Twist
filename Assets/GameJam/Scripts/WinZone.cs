@@ -10,6 +10,8 @@ public class WinZone : MonoBehaviour
     public Vector2 direction; 
     Rigidbody2D headerBallRb;
 
+	private EndingData endingData;
+
     private void Start()
     {
         headerBallRb = headerBall.GetComponent<Rigidbody2D>();  // 获取头节点刚体
@@ -23,8 +25,15 @@ public class WinZone : MonoBehaviour
             headerBallRb.AddForce(direction,ForceMode2D.Impulse);  //施加外力拖向远方
             Debug.Log(" Force complete");
             AudioManager.PlayWinAudio(); // 播放胜利音效
+
+			GameManager.Instance.OnLeaveLevel(ConstData.SceneLevel02, endingData);
         }
     }
+
+	public void SetEndingData(EndingData endingData)
+	{
+		this.endingData = endingData;
+	}
 
 
 }

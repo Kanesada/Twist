@@ -37,12 +37,17 @@ public class GameManager : MonoBehaviour
 	[Header("��Ϸʱ��")]
 	public int totalTime;
 
-
+	
 	public GameObject lostBallFVX;
+
+	[Header("Ending")]
+	public WinZone[] winZoneLevel1;
+	public WinZone[] winZoneLevel2;
 
 	// �������
 	public GamerData gamerData;
 
+	[HideInInspector]
 	public BodyBallControllerNew bodyBallController;
 
 	private bool timeFlag;
@@ -92,6 +97,12 @@ public class GameManager : MonoBehaviour
 			levelEndingList = GetEndingDatas();
 			// ����ѡ�񳡾����г��Ľ��
 		}
+		else if(scene.name == ConstData.SceneLevel02)
+		{
+
+		}
+
+		
 	}
 
 	// ��������һ���ؿ�ʱ���ã�����ؿ���ȥ�л��������Լ���ѡ��Ľ��ȥ�������·��
@@ -118,10 +129,11 @@ public class GameManager : MonoBehaviour
 	public void RemoveBodyBall(BodyBall bodyBall)
 	{
 		int index = bodyBallController.GetBodyBallIndex(bodyBall);
-		if (index == 0) //��ζ��ͷײ��������
+		GameObject.Find("Player").GetComponent<PlayerMovement>().CameraShake();
+		if (index == 0) //意味着头撞到了陷阱
 		{
 			// ��Ϸ������
-			Debug.LogError("��Ϸ���� TODO");
+			Debug.LogWarning("��Ϸ���� TODO");
 			// ������Ч
 
 			return;
@@ -190,18 +202,11 @@ public class GameManager : MonoBehaviour
 		}
 		if (totalTime == 100)
 		{
-			//ִ�н�������
+			//执行结束动画
 
 		}
 
 
-		//Test ����
-		//if (Input.GetKeyDown(KeyCode.R))
-		//{
-		//	bodyBallController.GenerateBody(4);
-
-		//	GeneratePlayer(Vector3.one * 5);
-		//}
 	}
 
 }

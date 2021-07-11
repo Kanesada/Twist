@@ -12,6 +12,7 @@ public class BodyBall : MonoBehaviour
 
 	public SpriteRenderer spriteRender;
 
+	private Animator anim;
 	public HingeJoint2D hingeJoint2D;
 
 	public BodyBall nextBodyBall;
@@ -33,15 +34,47 @@ public class BodyBall : MonoBehaviour
 		nextBodyBall = nextRig.GetComponent<BodyBall>();
 	}
 
-	public void Active(BallType type = BallType.None)
+	public void Active(BallType type)
 	{
 		isBodyBall = true;
 		hingeJoint2D.enabled = true;
 		spriteRender.enabled = true;
 		gameObject.layer = LayerMask.NameToLayer("BodyBall");
-	}
+        switch (type)
+		{
+			case BallType.Love:
+				gameObject.GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load("love",typeof(Sprite)) as Sprite;
+				break;
+			case BallType.Money:
+				gameObject.GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load("money", typeof(Sprite)) as Sprite;
+				//gameObject.GetComponentInChildren<Animator>().SetBool("money", true);
+				break;
+			case BallType.Virus:
+				gameObject.GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load("virus", typeof(Sprite)) as Sprite;
+				break;
+			case BallType.Smoke:
+				gameObject.GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load("smoke", typeof(Sprite)) as Sprite;
+				break;
+			case BallType.Book:
+				gameObject.GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load("book", typeof(Sprite)) as Sprite;
+				break;
+			default:
+				break;
+			
+		}
 
-	public void Deactive()
+
+
+
+
+
+
+
+
+
+    }
+
+    public void Deactive()
 	{
 		isBodyBall = false;
 		hingeJoint2D.enabled = false;
@@ -71,6 +104,8 @@ public class BodyBall : MonoBehaviour
 		if (collision.gameObject.tag == "Traps") // ͷ��������������
 		{
 			GameManager.Instance.RemoveBodyBall(this);
+			//减少生命
+			GameObject.Find("Canvas").GetComponent<UIManager>().LoseLife();
 		}
 
 		else if (collision.gameObject.tag == "Obstacle") // �����ϰ���
