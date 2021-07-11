@@ -19,17 +19,26 @@ public class UIManager : MonoBehaviour
     public int lose_seconds;
     public GameObject endPanel;
 
-    float timeSpeed = 0.0f;
+    float timeSpeed;
     private int totalnow;
 	private bool hasLoseLifeThisFrame;
+    public int now_int;
+    public int total_int;
 
-	// Start is called before the first frame update
-	void Start()
+    private void Awake()
     {
-        total_time.GetComponent<Text>().text = "100";
+        GameManager.Instance.uiManager = this;
+        timeSpeed = (float)GameManager.Instance.nowTime;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        total_time.GetComponent<Text>().text = GameManager.Instance.totalTime.ToString();
         lose_seconds = 10;
         endPanel.SetActive(false);
-
+         now_int = int.Parse(text_time.GetComponent<Text>().text);
+         total_int = int.Parse(total_time.GetComponent<Text>().text);
 
     }
 
@@ -45,17 +54,20 @@ public class UIManager : MonoBehaviour
         //text_time.GetComponent<Text>().text= string.Format("{0:D3}:{1:D2}:{2:D2}", hour, minute, second);
         text_time.GetComponent<Text>().text = string.Format("{0}", timeSpeed.ToString("0"));
 
-        int now_int = int.Parse(text_time.GetComponent<Text>().text);
-        int total_int = int.Parse(total_time.GetComponent<Text>().text);
-        if (total_int - now_int <= 0)
+        
+        now_int = int.Parse(text_time.GetComponent<Text>().text);
+        total_int = int.Parse(total_time.GetComponent<Text>().text);
+        if (total_int - now_int <= 0 || now_int == 100)
         {
+            endPanel.SetActive(true);
+            Time.timeScale = 0f;
             //结局panel 游戏暂停 播放新的音乐
         }
-        
 
 
+        GameManager.Instance.totalTime = total_int;
+        GameManager.Instance.nowTime = now_int;
 
-       
     }
 
     public void LoseLife()
@@ -73,6 +85,7 @@ public class UIManager : MonoBehaviour
 
     public void OnClickBackBtn()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(ConstData.SceneMainMenu);
     }
 
@@ -86,5 +99,9 @@ public class UIManager : MonoBehaviour
 #endif
     }
 
-
+    public void SetTimeText(int nowTime,int totalTime)
+    {
+        text_time.text = nowTime.ToString();
+        total_time.text = totalTime.ToString();
+    }
 }

@@ -35,7 +35,9 @@ public class GameManager : MonoBehaviour
 
 
 	[Header("��Ϸʱ��")]
-	public int totalTime;
+	public int totalTime = 100;
+	[Header("nowTime")]
+	public int nowTime = 0;
 
 	
 	public GameObject lostBallFVX;
@@ -45,6 +47,8 @@ public class GameManager : MonoBehaviour
 
 	[HideInInspector]
 	public BodyBallControllerNew bodyBallController;
+	[HideInInspector]
+	public UIManager uiManager;
 
 	public List<EndingData> endingList { get; private set; } = new List<EndingData>();
 	public List<EndingData> levelEndingList { get; private set; }
@@ -71,9 +75,11 @@ public class GameManager : MonoBehaviour
 	private void GenerateLevel1()
 	{
 		timeFlag = true;
-		
-		
-		for(int i = 0;i < levelDatas[0].initialBallCount; i++)
+		nowTime = 0;
+		totalTime = 100;
+		uiManager.SetTimeText(nowTime, totalTime);
+
+		for (int i = 0;i < levelDatas[0].initialBallCount; i++)
         {
 			Vector3 pos = levelDatas[0].initialBallPosition[i];
 			//print(pos);
@@ -84,6 +90,10 @@ public class GameManager : MonoBehaviour
 		//bodyBallController.GenerateBody(4);
 	}
 
+	private void GenerateLevel2()
+	{
+		uiManager.SetTimeText(nowTime,totalTime);
+	}
 
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
@@ -100,6 +110,7 @@ public class GameManager : MonoBehaviour
 		else if(scene.name == ConstData.SceneLevel02)
 		{
 			gamerData.LevelUp();
+			GenerateLevel2();
 
 			levelEndingList = GetEndingDatas();
 			SetEndingLevel02();
@@ -220,21 +231,4 @@ public class GameManager : MonoBehaviour
 			winzone.SetEndingData(levelEndingList[i]);
 		}
 	}
-
-	private void Update()
-	{
-		if (timeFlag == true)
-		{
-
-			totalTime = int.Parse(GameObject.Find("Canvas").GetComponent<UIManager>().text_time.text);
-		}
-		if (totalTime == 100)
-		{
-			//执行结束动画
-
-		}
-
-
-	}
-
 }
