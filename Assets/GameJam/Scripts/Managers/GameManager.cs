@@ -159,8 +159,11 @@ public class GameManager : MonoBehaviour
 	{
 		gamerData.ChoosenEndings.Add(data.number);
 
-		if (string.IsNullOrEmpty(sceneName))
+		if (string.IsNullOrEmpty(sceneName)) // Game Good Over
+		{
+			uiManager.OnGameGoodOver();
 			return;
+		}
 		SceneManager.LoadScene(sceneName);
 	}
 

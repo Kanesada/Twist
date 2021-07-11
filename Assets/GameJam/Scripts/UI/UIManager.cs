@@ -47,6 +47,11 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		if (isGameOver)
+		{
+			return;
+		}
+
 		hasLoseLifeThisFrame = false;
 
 		timeSpeed += Time.deltaTime;
@@ -63,19 +68,6 @@ public class UIManager : MonoBehaviour
         {
             endPanel.SetActive(true);
             Time.timeScale = 0f;
-            //结局panel 游戏暂停 播放新的音乐
-            List<string> endingList = new List<string>();
-            endingList = GameManager.Instance.GetChoosenEndingString();
-            foreach (var number in endingList)
-            {
-                endText.GetComponent<Text>().text += number;
-                print(number);
-            }
-                
-
-
-
-
         }
 
 
@@ -84,7 +76,26 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void LoseLife()
+	private bool isGameOver = false;
+	public void OnGameGoodOver()
+	{
+		isGameOver = true;
+
+		endPanel.SetActive(true);
+		Time.timeScale = 0f;
+		//结局panel 游戏暂停 播放新的音乐
+		var endingList = GameManager.Instance.GetChoosenEndingString();
+		var endingText = endText.GetComponent<Text>();
+		endingText.text = "";
+		endingText.fontSize = 26;
+		foreach (var describe in endingList)
+		{
+			endingText.text += describe;
+			print(describe);
+		}
+	}
+
+	public void LoseLife()
     {
 		if (hasLoseLifeThisFrame == true)
 			return;
