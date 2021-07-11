@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class UIManager : MonoBehaviour
     public Text text_time;
     public Text total_time;
     public int lose_seconds;
+    public GameObject endPanel;
 
     float timeSpeed = 0.0f;
     private int totalnow;
@@ -26,6 +28,7 @@ public class UIManager : MonoBehaviour
     {
         total_time.GetComponent<Text>().text = "100";
         lose_seconds = 10;
+        endPanel.SetActive(false);
 
 
     }
@@ -42,11 +45,13 @@ public class UIManager : MonoBehaviour
         //text_time.GetComponent<Text>().text= string.Format("{0:D3}:{1:D2}:{2:D2}", hour, minute, second);
         text_time.GetComponent<Text>().text = string.Format("{0}", timeSpeed.ToString("0"));
 
-
-        if (total_time.GetComponent<Text>().text.Equals(text_time.GetComponent<Text>().text))
+        int now_int = int.Parse(text_time.GetComponent<Text>().text);
+        int total_int = int.Parse(total_time.GetComponent<Text>().text);
+        if (total_int - now_int <= 0)
         {
-            Debug.Log("游戏结束");
+            //结局panel 游戏暂停 播放新的音乐
         }
+        
 
 
 
@@ -66,8 +71,20 @@ public class UIManager : MonoBehaviour
 
     }
 
+    public void OnClickBackBtn()
+    {
+        SceneManager.LoadScene(ConstData.SceneMainMenu);
+    }
 
 
+    public void OnClickExitBtn()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+    }
 
 
 }
