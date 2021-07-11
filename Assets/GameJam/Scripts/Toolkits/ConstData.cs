@@ -10,6 +10,8 @@ public static class ConstData
 	public static string SceneMainMenu = "MainMenu";
 	public static string SceneManuel = "Manuel";
 	public static string SceneRunABall = "RunABall";
+	public static string SceneLevel02 = "Level02";
 
 	public static string SceneTestRunABall = "RunABall Chaye";
+
 }
