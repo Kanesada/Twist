@@ -1650,7 +1650,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 98a8545d4715bc748b5b797e33f1b677, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0d4d5973c658e7546b34227e22247c45, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1990,6 +1990,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 390045763477080564, guid: b87a0b4d99e9b63448200ef08ccf825c, type: 3}
+      propertyPath: BodyBallPrefabs.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 390045763477080564, guid: b87a0b4d99e9b63448200ef08ccf825c, type: 3}
       propertyPath: BodyBallPrefabs.Array.data[0]
       value: 
       objectReference: {fileID: 6858622782132766188, guid: ab857a0ba67f78d4d9250b94ffe18160, type: 3}
@@ -2001,6 +2005,14 @@ PrefabInstance:
       propertyPath: BodyBallPrefabs.Array.data[2]
       value: 
       objectReference: {fileID: 6858622782132766188, guid: 8d586f310abf7a6439660074606519b7, type: 3}
+    - target: {fileID: 390045763477080564, guid: b87a0b4d99e9b63448200ef08ccf825c, type: 3}
+      propertyPath: BodyBallPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 6858622782132766188, guid: e62aeba66e6acd54ca262b1c71283253, type: 3}
+    - target: {fileID: 390045763477080564, guid: b87a0b4d99e9b63448200ef08ccf825c, type: 3}
+      propertyPath: BodyBallPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 6858622782132766188, guid: 3e6be422a143da44aaffcddac39741e8, type: 3}
     - target: {fileID: 390045763477080565, guid: b87a0b4d99e9b63448200ef08ccf825c, type: 3}
       propertyPath: m_RootOrder
       value: 5
