@@ -31,10 +31,12 @@ public class WinZone : MonoBehaviour
 				if (GameManager.Instance.gamerData.Level == 1)
 				{
 					GameManager.Instance.OnLeaveLevel(ConstData.SceneLevel02, endingData);
+					Debug.LogWarning(endingData.describe);
 				}
 				else if (GameManager.Instance.gamerData.Level == 2)
 				{
 					GameManager.Instance.OnLeaveLevel("", endingData);
+					Debug.LogWarning(endingData.describe);
 				}
 			});
         }
