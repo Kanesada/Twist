@@ -165,9 +165,9 @@ public class GameManager : MonoBehaviour
 	}
 
 	// ��������һ���ؿ�ʱ���ã�����ؿ���ȥ�л��������Լ���ѡ��Ľ��ȥ�������·��
-	public void OnLeaveLevel(string sceneName, EndingData data)
+	public void OnLeaveLevel(string sceneName, int number)
 	{
-		gamerData.ChoosenEndings.Add(data.number);
+		gamerData.ChoosenEndings.Add(number);
 
 		if (string.IsNullOrEmpty(sceneName)) // Game Good Over
 		{
