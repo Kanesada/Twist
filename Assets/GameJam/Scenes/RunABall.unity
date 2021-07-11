@@ -2479,6 +2479,7 @@ MonoBehaviour:
   total_time: {fileID: 1153963531}
   lose_seconds: 0
   endPanel: {fileID: 1876348867}
+  endText: {fileID: 1629206307}
   now_int: 0
   total_int: 0
 --- !u!114 &105608109
@@ -44355,7 +44356,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8FD9\u91CC\u662F\u7ED3\u5C40\u6587\u6848"
+  m_Text: Dead
 --- !u!222 &1629206310
 CanvasRenderer:
   m_ObjectHideFlags: 0
