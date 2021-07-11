@@ -1760,6 +1760,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Track
       objectReference: {fileID: 0}
+    - target: {fileID: 6674597082205056697, guid: c6f09d7e254f97041ab829903dafb5de, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 7558227503177279089, guid: c6f09d7e254f97041ab829903dafb5de, type: 3}
       propertyPath: m_RootOrder
       value: 763
@@ -4375,6 +4379,10 @@ PrefabInstance:
     - target: {fileID: 6674597082205056697, guid: c6f09d7e254f97041ab829903dafb5de, type: 3}
       propertyPath: m_Name
       value: Track
+      objectReference: {fileID: 0}
+    - target: {fileID: 6674597082205056697, guid: c6f09d7e254f97041ab829903dafb5de, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7558227503177279089, guid: c6f09d7e254f97041ab829903dafb5de, type: 3}
       propertyPath: m_RootOrder
@@ -14455,6 +14463,10 @@ PrefabInstance:
     - target: {fileID: 6674597082205056697, guid: c6f09d7e254f97041ab829903dafb5de, type: 3}
       propertyPath: m_Name
       value: Track
+      objectReference: {fileID: 0}
+    - target: {fileID: 6674597082205056697, guid: c6f09d7e254f97041ab829903dafb5de, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7558227503177279089, guid: c6f09d7e254f97041ab829903dafb5de, type: 3}
       propertyPath: m_RootOrder
@@ -37814,6 +37826,10 @@ PrefabInstance:
     - target: {fileID: 6674597082205056697, guid: c6f09d7e254f97041ab829903dafb5de, type: 3}
       propertyPath: m_Name
       value: Track
+      objectReference: {fileID: 0}
+    - target: {fileID: 6674597082205056697, guid: c6f09d7e254f97041ab829903dafb5de, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7558227503177279089, guid: c6f09d7e254f97041ab829903dafb5de, type: 3}
       propertyPath: m_RootOrder
