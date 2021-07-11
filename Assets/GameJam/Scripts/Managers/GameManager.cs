@@ -10,6 +10,11 @@ public class GameManager : MonoBehaviour
 	#region Singleton
 	private static GameManager instance;
 	public static GameManager Instance => instance;
+
+	public void DestroyMe()
+	{
+		instance = null;
+	}
 	private void Awake()
 	{
 		if (instance == null)
@@ -90,6 +95,18 @@ public class GameManager : MonoBehaviour
 		//bodyBallController.GenerateBody(4);
 	}
 
+	public void SetupSceneMainMenu()
+	{
+		timeFlag = false;
+		gamerData.Init();
+		totalTime = 100;
+		nowTime = 0;
+		bodyBallController = null;
+		uiManager = null;
+		levelEndingList = null;
+		Time.timeScale = 1;
+	}
+
 	private void GenerateLevel2()
 	{
 		uiManager.SetTimeText(nowTime,totalTime);
@@ -115,7 +132,10 @@ public class GameManager : MonoBehaviour
 			levelEndingList = GetEndingDatas();
 			SetEndingLevel();
 		}
-
+		else if (scene.name == ConstData.SceneMainMenu)
+		{
+			SetupSceneMainMenu();
+		}
 		
 	}
 
@@ -265,10 +285,6 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-
-	public void ReadyToBackToMainMenu()
-	{
-
-	}
+	
 
 }
