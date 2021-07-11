@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
 
 			// �����г����п�ѡ���
 			levelEndingList = GetEndingDatas();
-			SetEndingLevel01();
+			SetEndingLevel();
 			// ����ѡ�񳡾����г��Ľ��
 		}
 		else if(scene.name == ConstData.SceneLevel02)
@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
 			gamerData.LevelUp();
 
 			levelEndingList = GetEndingDatas();
-			SetEndingLevel02();
+			SetEndingLevel();
 		}
 
 		
@@ -196,26 +196,14 @@ public class GameManager : MonoBehaviour
 		return new List<EndingData>(canBeSelectedEndingList);
 	}
 
-	private void SetEndingLevel01()
+	private void SetEndingLevel()
 	{
-		var winzones1 = GameObject.FindGameObjectsWithTag("WinZone");
+		var winzones = GameObject.FindGameObjectsWithTag("WinZone");
 
 
-		for (int i = 0; i < winzones1.Length; i++)
+		for (int i = 0; i < winzones.Length; i++)
 		{
-			var winzone = winzones1[i].GetComponent<WinZone>();
-
-			winzone.SetEndingData(levelEndingList[i]);
-		}
-	}
-
-	private void SetEndingLevel02()
-	{
-		var winzones2 = GameObject.FindGameObjectsWithTag("WinZone");
-
-		for (int i = 0; i < winzones2.Length; i++)
-		{
-			var winzone = winzones2[i].GetComponent<WinZone>();
+			var winzone = winzones[i].GetComponent<WinZone>();
 
 			winzone.SetEndingData(levelEndingList[i]);
 		}
