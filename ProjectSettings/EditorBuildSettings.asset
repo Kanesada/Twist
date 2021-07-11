@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/GameJam/Scenes/Option.unity
     guid: 2c83a4e728141004e8a4c221b7cb8906
   - enabled: 1
+    path: Assets/GameJam/Scenes/Level2WithPicBackup.unity
+    guid: 8088371dd7828d64ea797b3ff7ec7d3b
+  - enabled: 1
     path: Assets/GameJam/Scenes/Play.unity
     guid: 90c800c2534e71446b0af03c09974c6e
   - enabled: 1
