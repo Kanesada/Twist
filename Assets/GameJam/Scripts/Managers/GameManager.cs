@@ -40,21 +40,20 @@ public class GameManager : MonoBehaviour
 	
 	public GameObject lostBallFVX;
 
-	[Header("Ending")]
-	public WinZone[] winZoneLevel1;
-	public WinZone[] winZoneLevel2;
-
 	// �������
 	public GamerData gamerData;
 
 	[HideInInspector]
 	public BodyBallControllerNew bodyBallController;
 
+	public List<EndingData> endingList { get; private set; } = new List<EndingData>();
+	public List<EndingData> levelEndingList { get; private set; }
+
+
+
 	private bool timeFlag;
 
-	private List<EndingData> endingList = new List<EndingData>();
 
-	private List<EndingData> levelEndingList;
 
 
 	void OnEnable()
@@ -95,11 +94,15 @@ public class GameManager : MonoBehaviour
 
 			// �����г����п�ѡ���
 			levelEndingList = GetEndingDatas();
+			SetEndingLevel01();
 			// ����ѡ�񳡾����г��Ľ��
 		}
 		else if(scene.name == ConstData.SceneLevel02)
 		{
+			gamerData.LevelUp();
 
+			levelEndingList = GetEndingDatas();
+			SetEndingLevel02();
 		}
 
 		
@@ -191,6 +194,31 @@ public class GameManager : MonoBehaviour
 		});
 
 		return new List<EndingData>(canBeSelectedEndingList);
+	}
+
+	private void SetEndingLevel01()
+	{
+		var winzones1 = GameObject.FindGameObjectsWithTag("WinZone");
+
+
+		for (int i = 0; i < winzones1.Length; i++)
+		{
+			var winzone = winzones1[i].GetComponent<WinZone>();
+
+			winzone.SetEndingData(levelEndingList[i]);
+		}
+	}
+
+	private void SetEndingLevel02()
+	{
+		var winzones2 = GameObject.FindGameObjectsWithTag("WinZone");
+
+		for (int i = 0; i < winzones2.Length; i++)
+		{
+			var winzone = winzones2[i].GetComponent<WinZone>();
+
+			winzone.SetEndingData(levelEndingList[i]);
+		}
 	}
 
 	private void Update()

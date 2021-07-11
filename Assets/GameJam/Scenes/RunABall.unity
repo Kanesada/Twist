@@ -56263,18 +56263,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 390045763477080564, guid: b87a0b4d99e9b63448200ef08ccf825c, type: 3}
-      propertyPath: lostBallFVX
-      value: 
-      objectReference: {fileID: 1990042275984218, guid: aa9ea8a48bb27441597c8a4a55e18999, type: 3}
-    - target: {fileID: 390045763477080564, guid: b87a0b4d99e9b63448200ef08ccf825c, type: 3}
-      propertyPath: lostBallVFXPrefab
-      value: 
-      objectReference: {fileID: 1990042275984218, guid: aa9ea8a48bb27441597c8a4a55e18999, type: 3}
-    - target: {fileID: 390045763477080564, guid: b87a0b4d99e9b63448200ef08ccf825c, type: 3}
-      propertyPath: winZoneLevel1.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 390045763477080564, guid: b87a0b4d99e9b63448200ef08ccf825c, type: 3}
       propertyPath: winZoneLevel1.Array.data[0]
       value: 
       objectReference: {fileID: 794037388}
