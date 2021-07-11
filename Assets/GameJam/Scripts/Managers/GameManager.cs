@@ -125,6 +125,16 @@ public class GameManager : MonoBehaviour
 			artShowEndingGO?.SetActive(true);
 		}
 
+
+		for (int i = 0; i < levelDatas[1].initialBallCount; i++)
+		{
+			Vector3 pos = levelDatas[1].initialBallPosition[i];
+			//print(pos);
+			Instantiate(BodyBallPrefabs[i], pos, Quaternion.identity);
+
+		}
+
+
 	}
 
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
