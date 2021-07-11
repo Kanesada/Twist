@@ -45,6 +45,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Hide Obstacle
+    uniqueID: 2792160379
+    locked: 0
   - name: Background
     uniqueID: 100778765
     locked: 0
@@ -53,9 +56,6 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Hide Obstacle
-    uniqueID: 2792160379
     locked: 0
   - name: Player and Ball
     uniqueID: 2984582461
