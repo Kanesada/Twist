@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
 
 			// �����г����п�ѡ���
 			levelEndingList = GetEndingDatas();
-			SetEndingLevel01();
+			SetEndingLevel();
 			// ����ѡ�񳡾����г��Ľ��
 		}
 		else if(scene.name == ConstData.SceneLevel02)
@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
 			GenerateLevel2();
 
 			levelEndingList = GetEndingDatas();
-			SetEndingLevel02();
+			SetEndingLevel();
 		}
 
 		
@@ -207,28 +207,53 @@ public class GameManager : MonoBehaviour
 		return new List<EndingData>(canBeSelectedEndingList);
 	}
 
-	private void SetEndingLevel01()
+	private void SetEndingLevel()
 	{
-		var winzones1 = GameObject.FindGameObjectsWithTag("WinZone");
+		var winzones = GameObject.FindGameObjectsWithTag("WinZone");
 
 
-		for (int i = 0; i < winzones1.Length; i++)
+		for (int i = 0; i < winzones.Length; i++)
 		{
-			var winzone = winzones1[i].GetComponent<WinZone>();
+			var winzone = winzones[i].GetComponent<WinZone>();
 
 			winzone.SetEndingData(levelEndingList[i]);
 		}
 	}
 
-	private void SetEndingLevel02()
+	public List<string> GetChoosenEndingString()
 	{
-		var winzones2 = GameObject.FindGameObjectsWithTag("WinZone");
-
-		for (int i = 0; i < winzones2.Length; i++)
+		List<string> endingDescribeList = new List<string>();
+		var choosenList = gamerData.ChoosenEndings;
+		foreach (var number in choosenList)
 		{
-			var winzone = winzones2[i].GetComponent<WinZone>();
+			var index = number - 1;
+			var endingData = endingList[index];
+			endingDescribeList.Add(endingData.describe);
+		}
+		return endingDescribeList;
+	}
 
-			winzone.SetEndingData(levelEndingList[i]);
+	private void Update()
+	{
+		if (timeFlag == true)
+		{
+
+			totalTime = int.Parse(GameObject.Find("Canvas").GetComponent<UIManager>().text_time.text);
+		}
+		if (totalTime == 100)
+		{
+			//执行结束动画
+
+		}
+
+		if (Input.GetKeyDown(KeyCode.G))
+		{
+			var s = GetChoosenEndingString();
+			foreach(var describe in s)
+			{
+				Debug.Log(describe);
+			}
 		}
 	}
+
 }

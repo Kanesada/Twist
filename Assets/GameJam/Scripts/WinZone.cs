@@ -39,6 +39,7 @@ public class WinZone : MonoBehaviour
 	public void SetEndingData(EndingData endingData)
 	{
 		this.endingData = endingData;
+		Debug.Log(endingData.describe);
 	}
 
 
