@@ -90,6 +90,17 @@ public class GameManager : MonoBehaviour
 		//bodyBallController.GenerateBody(4);
 	}
 
+	public void SetupSceneMainMenu()
+	{
+		timeFlag = false;
+		gamerData.Init();
+		totalTime = 100;
+		nowTime = 0;
+		bodyBallController = null;
+		uiManager = null;
+		levelEndingList = null;
+	}
+
 	private void GenerateLevel2()
 	{
 		uiManager.SetTimeText(nowTime,totalTime);
@@ -115,7 +126,10 @@ public class GameManager : MonoBehaviour
 			levelEndingList = GetEndingDatas();
 			SetEndingLevel();
 		}
-
+		else if (scene.name == ConstData.SceneMainMenu)
+		{
+			SetupSceneMainMenu();
+		}
 		
 	}
 
@@ -265,10 +279,6 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-
-	public void ReadyToBackToMainMenu()
-	{
-
-	}
+	
 
 }

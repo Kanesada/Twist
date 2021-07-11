@@ -30,8 +30,9 @@ public class GamerData
 		Level = 0;
 
 		//Level = 1;
-		//ChoosenEndings.Add(2);
-
+		ChoosenEndings.Clear();
+		
+		BodyBallList.Clear();
 		BodyBallList.Add(BallType.Life);
 	}
 
