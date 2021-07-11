@@ -37,12 +37,17 @@ public class GameManager : MonoBehaviour
 	[Header("��Ϸʱ��")]
 	public int totalTime;
 
-
+	
 	public GameObject lostBallFVX;
+
+	[Header("Ending")]
+	public WinZone[] winZoneLevel1;
+	public WinZone[] winZoneLevel2;
 
 	// �������
 	public GamerData gamerData;
 
+	[HideInInspector]
 	public BodyBallControllerNew bodyBallController;
 
 	private bool timeFlag;
@@ -92,6 +97,12 @@ public class GameManager : MonoBehaviour
 			levelEndingList = GetEndingDatas();
 			// ����ѡ�񳡾����г��Ľ��
 		}
+		else if(scene.name == ConstData.SceneLevel02)
+		{
+
+		}
+
+		
 	}
 
 	// ��������һ���ؿ�ʱ���ã�����ؿ���ȥ�л��������Լ���ѡ��Ľ��ȥ�������·��
@@ -122,7 +133,7 @@ public class GameManager : MonoBehaviour
 		if (index == 0) //意味着头撞到了陷阱
 		{
 			// ��Ϸ������
-			Debug.LogError("��Ϸ���� TODO");
+			Debug.LogWarning("��Ϸ���� TODO");
 			// ������Ч
 
 			return;
@@ -196,13 +207,6 @@ public class GameManager : MonoBehaviour
 		}
 
 
-		//Test ����
-		//if (Input.GetKeyDown(KeyCode.R))
-		//{
-		//	bodyBallController.GenerateBody(4);
-
-		//	GeneratePlayer(Vector3.one * 5);
-		//}
 	}
 
 }

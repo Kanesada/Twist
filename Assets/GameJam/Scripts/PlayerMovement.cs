@@ -9,9 +9,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 direction;
     private Rigidbody2D ballRb;
     private Animator anim;
-    public Cinemachine.CinemachineCollisionImpulseSource MyInpulse;
+	public Cinemachine.CinemachineCollisionImpulseSource MyInpulse;
 
-    [Header("Header 球")]
+	[Header("Header 球")]
     public GameObject headerBall;
 
     
@@ -27,6 +27,9 @@ public class PlayerMovement : MonoBehaviour
     public bool pullPressed = false;  // 角色是否按下拉
     public float pullForce = 10f;  //角色拉力
 
+	[Header("绳子特效")]
+	public LineRenderer lineRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,9 +38,9 @@ public class PlayerMovement : MonoBehaviour
         ballRb = headerBall.GetComponent<Rigidbody2D>();  //获取header球的刚体
         anim = GetComponent<Animator>();
 
-        MyInpulse = GetComponent<Cinemachine.CinemachineCollisionImpulseSource>();
+		MyInpulse = GetComponent<Cinemachine.CinemachineCollisionImpulseSource>();
 
-    }
+	}
 
     // Update is called once per frame
     void Update()
@@ -49,10 +52,8 @@ public class PlayerMovement : MonoBehaviour
         }
         if(Input.GetButtonUp("Jump")) anim.SetBool("pull", false);
 
+		RenderString();
 
-       
-
-        
     }
     private void FixedUpdate()
     {
@@ -60,6 +61,22 @@ public class PlayerMovement : MonoBehaviour
         PlayerPull();
         FlipDirection();
     }
+
+	void RenderString()
+	{
+		List<Vector3> points = new List<Vector3>();
+		var pos1 = this.transform.position - 0.5f * Vector3.up;
+		pos1.z = -1;
+		points.Add(pos1);
+		var pos2 = headerBall.transform.position;
+		pos2.z = -1;
+		points.Add(pos2);
+
+		lineRenderer.SetPositions(points.ToArray());
+
+		lineRenderer.startWidth = 0.1f;
+		lineRenderer.endWidth = 0.1f;
+	}
 
     void PlayerRun()
     {
@@ -75,11 +92,6 @@ public class PlayerMovement : MonoBehaviour
                 anim.SetFloat("running", Mathf.Abs(xVelocity));
             }
             else anim.SetFloat("running", Mathf.Abs(yVelocity));
-        }
-        else
-        {
-            int a = Random.Range(0, 10);
-            anim.SetInteger("smile", a);
         }
 
     }
@@ -103,8 +115,6 @@ public class PlayerMovement : MonoBehaviour
             ballRb.AddForce(direction * pullForce,ForceMode2D.Impulse);
             AudioManager.PlayPullAudio();  //播放拉音效
             pullPressed = false;
-            
-            
         }
 
 		// 播放音效
@@ -123,11 +133,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void CameraShake()
-    {
-        MyInpulse.GenerateImpulse();
-    }
-  
+	public void CameraShake()
+	{
+		MyInpulse.GenerateImpulse();
+	}
+
 
 
 
