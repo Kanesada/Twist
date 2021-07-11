@@ -35,26 +35,29 @@ public class GameManager : MonoBehaviour
 
 
 	[Header("��Ϸʱ��")]
-	public int totalTime;
+	public int totalTime = 100;
+	[Header("nowTime")]
+	public int nowTime = 0;
 
 	
 	public GameObject lostBallFVX;
-
-	[Header("Ending")]
-	public WinZone[] winZoneLevel1;
-	public WinZone[] winZoneLevel2;
 
 	// �������
 	public GamerData gamerData;
 
 	[HideInInspector]
 	public BodyBallControllerNew bodyBallController;
+	[HideInInspector]
+	public UIManager uiManager;
+
+	public List<EndingData> endingList { get; private set; } = new List<EndingData>();
+	public List<EndingData> levelEndingList { get; private set; }
+
+
 
 	private bool timeFlag;
 
-	private List<EndingData> endingList = new List<EndingData>();
 
-	private List<EndingData> levelEndingList;
 
 
 	void OnEnable()
@@ -72,9 +75,11 @@ public class GameManager : MonoBehaviour
 	private void GenerateLevel1()
 	{
 		timeFlag = true;
-		
-		
-		for(int i = 0;i < levelDatas[0].initialBallCount; i++)
+		nowTime = 0;
+		totalTime = 100;
+		uiManager.SetTimeText(nowTime, totalTime);
+
+		for (int i = 0;i < levelDatas[0].initialBallCount; i++)
         {
 			Vector3 pos = levelDatas[0].initialBallPosition[i];
 			//print(pos);
@@ -85,6 +90,10 @@ public class GameManager : MonoBehaviour
 		//bodyBallController.GenerateBody(4);
 	}
 
+	private void GenerateLevel2()
+	{
+		uiManager.SetTimeText(nowTime,totalTime);
+	}
 
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
@@ -95,11 +104,16 @@ public class GameManager : MonoBehaviour
 
 			// �����г����п�ѡ���
 			levelEndingList = GetEndingDatas();
+			SetEndingLevel();
 			// ����ѡ�񳡾����г��Ľ��
 		}
 		else if(scene.name == ConstData.SceneLevel02)
 		{
+			gamerData.LevelUp();
+			GenerateLevel2();
 
+			levelEndingList = GetEndingDatas();
+			SetEndingLevel();
 		}
 
 		
@@ -109,6 +123,9 @@ public class GameManager : MonoBehaviour
 	public void OnLeaveLevel(string sceneName, EndingData data)
 	{
 		gamerData.ChoosenEndings.Add(data.number);
+
+		if (string.IsNullOrEmpty(sceneName))
+			return;
 		SceneManager.LoadScene(sceneName);
 	}
 
@@ -193,19 +210,64 @@ public class GameManager : MonoBehaviour
 		return new List<EndingData>(canBeSelectedEndingList);
 	}
 
+	private void SetEndingLevel()
+	{
+		var winzones = GameObject.FindGameObjectsWithTag("WinZone");
+
+
+		for (int i = 0; i < winzones.Length; i++)
+		{
+			var winzone = winzones[i].GetComponent<WinZone>();
+
+			winzone.SetEndingData(levelEndingList[i]);
+		}
+	}
+
+	public List<string> GetChoosenEndingString()
+	{
+		List<string> endingDescribeList = new List<string>();
+		var choosenList = gamerData.ChoosenEndings;
+		foreach (var number in choosenList)
+		{
+			var index = number - 1;
+			var endingData = endingList[index];
+			endingDescribeList.Add(endingData.describe);
+		}
+		return endingDescribeList;
+	}
+
 	private void Update()
 	{
-		if (timeFlag == true)
+
+		try
 		{
+			if (timeFlag == true)
+			{
 
-			totalTime = int.Parse(GameObject.Find("Canvas").GetComponent<UIManager>().text_time.text);
+				totalTime = int.Parse(GameObject.Find("Canvas").GetComponent<UIManager>().text_time.text);
+			}
 		}
-		if (totalTime == 100)
+		catch (System.NullReferenceException ex)
 		{
-			//执行结束动画
-
+			Debug.Log("myLight was not set in the inspector");
 		}
 
+		
+		
+
+		if (Input.GetKeyDown(KeyCode.G))
+		{
+			var s = GetChoosenEndingString();
+			foreach(var describe in s)
+			{
+				Debug.Log(describe);
+			}
+		}
+	}
+
+
+	public void ReadyToBackToMainMenu()
+	{
 
 	}
 

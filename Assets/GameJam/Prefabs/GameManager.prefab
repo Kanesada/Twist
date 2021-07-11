@@ -54,3 +54,8 @@ MonoBehaviour:
   - {fileID: 6858622782132766188, guid: ab857a0ba67f78d4d9250b94ffe18160, type: 3}
   - {fileID: 6858622782132766188, guid: ab857a0ba67f78d4d9250b94ffe18160, type: 3}
   totalTime: 0
+  lostBallFVX: {fileID: 1990042275984218, guid: aa9ea8a48bb27441597c8a4a55e18999, type: 3}
+  winZoneLevel1:
+  - {fileID: 0}
+  winZoneLevel2: []
+  bodyBallController: {fileID: 0}
