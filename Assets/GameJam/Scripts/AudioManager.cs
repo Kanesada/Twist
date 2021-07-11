@@ -29,16 +29,21 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if (current != null) return;  // 防止重复添加
-        current = this;
-        DontDestroyOnLoad(gameObject); //切换场景重新加载时不删除
+        if (current == null)
+		{
+			current = this;
+			DontDestroyOnLoad(gameObject); //切换场景重新加载时不删除
 
-        musicSource = gameObject.AddComponent<AudioSource>();  // 初始化音响
-        playerSource = gameObject.AddComponent<AudioSource>();
-        ballSource = gameObject.AddComponent<AudioSource>();
+			musicSource = gameObject.AddComponent<AudioSource>();  // 初始化音响
+			playerSource = gameObject.AddComponent<AudioSource>();
+			ballSource = gameObject.AddComponent<AudioSource>();
 
-        StartLevelMusic();
-
+			StartLevelMusic();
+		}
+		else
+		{
+			Destroy(this.gameObject);
+		}
     }
 
     public static void StartLevelMusic()  // 播放场景音乐 

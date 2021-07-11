@@ -10,6 +10,11 @@ public class GameManager : MonoBehaviour
 	#region Singleton
 	private static GameManager instance;
 	public static GameManager Instance => instance;
+
+	public void DestroyMe()
+	{
+		instance = null;
+	}
 	private void Awake()
 	{
 		if (instance == null)
@@ -99,6 +104,7 @@ public class GameManager : MonoBehaviour
 		bodyBallController = null;
 		uiManager = null;
 		levelEndingList = null;
+		Time.timeScale = 1;
 	}
 
 	private void GenerateLevel2()
