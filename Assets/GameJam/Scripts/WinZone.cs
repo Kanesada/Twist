@@ -10,6 +10,9 @@ public class WinZone : MonoBehaviour
     public Vector2 direction; 
     Rigidbody2D headerBallRb;
 
+	public int artEndNumber;
+	public int peEndNumber;
+
 	public EndingData endingData { get; private set; }
 
     private void Start()
@@ -30,12 +33,15 @@ public class WinZone : MonoBehaviour
 			{
 				if (GameManager.Instance.gamerData.Level == 1)
 				{
-					GameManager.Instance.OnLeaveLevel(ConstData.SceneLevel02, endingData);
+					GameManager.Instance.OnLeaveLevel(ConstData.SceneLevel02, endingData.number);
 					Debug.LogWarning(endingData.describe);
 				}
 				else if (GameManager.Instance.gamerData.Level == 2)
 				{
-					GameManager.Instance.OnLeaveLevel("", endingData);
+					if (GameManager.Instance.gamerData.ChoosenEndings[0] == 1)
+						GameManager.Instance.OnLeaveLevel("", peEndNumber);
+					else
+						GameManager.Instance.OnLeaveLevel("", artEndNumber);
 					Debug.LogWarning(endingData.describe);
 				}
 			});
