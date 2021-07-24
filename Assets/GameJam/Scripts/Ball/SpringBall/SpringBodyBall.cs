@@ -46,18 +46,24 @@ public class SpringBodyBall : MonoBehaviour
 		if (isBodyBall == false)
 			return;
 
-		if (collision.tag == "ItemBall")
+		if (collision.tag == "ItemBall" && isHead== true)
 		{
 			var itemBall = collision.GetComponent<ItemBall>();
 			var type = itemBall.ballType;
 			GameManager.Instance.AddSpringBodyBall(type);
 		}
-
-		if (isHead == false && collision.gameObject.tag == "Traps") 
-		{
-			GameManager.Instance.RemoveSpringBodyBall(this);
-		}
-
 	}
 
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (isBodyBall == false)
+			return;
+
+		if (collision.gameObject.tag == "Traps")
+		{
+			GameManager.Instance.RemoveSpringBodyBall(this);
+			//减少生命
+			GameObject.Find("Canvas")?.GetComponent<UIManager>().LoseLife();
+		}
+	}
 }

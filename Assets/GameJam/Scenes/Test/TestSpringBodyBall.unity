@@ -180,7 +180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4117998914638507259, guid: c8f02ed30e6ec5e4099e28cbca370c41, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8f02ed30e6ec5e4099e28cbca370c41, type: 3}
@@ -388,10 +388,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8508409940125617123, guid: 2bc0ddcb6c3e44540bac990263623970, type: 3}
-      propertyPath: isHead
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8508409940563690145, guid: 2bc0ddcb6c3e44540bac990263623970, type: 3}
       propertyPath: m_RootOrder
       value: 1

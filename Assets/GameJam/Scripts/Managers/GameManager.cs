@@ -194,6 +194,11 @@ public class GameManager : MonoBehaviour
 	public void RemoveSpringBodyBall(SpringBodyBall	spring)
 	{
 		int index = springBallController.GetBodyBallIndex(spring);
+		if (index == 0) //意味着头撞到了陷阱
+		{
+			Debug.LogWarning("��Ϸ���� TODO");
+			return;
+		}
 		gamerData.RemoveRestBodyBall(index);
 		springBallController.RemoveSpringBall(spring);
 	}

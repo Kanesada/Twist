@@ -21,6 +21,7 @@ public class SpringBallController : MonoBehaviour
 	{
 		GameManager.Instance.springBallController = this;
 
+		head.Active(BallType.Life);
 		springBalls.Add(head);
 	}
 
