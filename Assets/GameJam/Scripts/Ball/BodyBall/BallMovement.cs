@@ -20,17 +20,16 @@ public class BallMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();  //引用角色刚体
         coll = GetComponent<CircleCollider2D>();
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
+		BallRun();
+	}
     private void FixedUpdate()
     {
-        BallRun();
+        
     }
 
     void BallRun()

@@ -54,6 +54,8 @@ public class GameManager : MonoBehaviour
 	public BodyBallControllerNew bodyBallController;
 	[HideInInspector]
 	public UIManager uiManager;
+	[HideInInspector]
+	public SpringBallController springBallController;
 
 	public List<EndingData> endingList { get; private set; } = new List<EndingData>();
 	public List<EndingData> levelEndingList { get; private set; }
@@ -183,12 +185,25 @@ public class GameManager : MonoBehaviour
 		SceneManager.sceneLoaded -= OnSceneLoaded;
 	}
 
+	public void AddSpringBodyBall(BallType type)
+	{
+		gamerData.AddBodyBall(type);
+		springBallController.AddSpringBall(type);
+	}
+
+	public void RemoveSpringBodyBall(SpringBodyBall	spring)
+	{
+		int index = springBallController.GetBodyBallIndex(spring);
+		gamerData.RemoveRestBodyBall(index);
+		springBallController.RemoveSpringBall(spring);
+	}
+
+
 	public void AddBodyBall(BallType type)
 	{
 		gamerData.AddBodyBall(type);
 		bodyBallController.ChangeBodyBallVisiable();
 		AudioManager.PlayBallAddAudio();
-		// ������Ч
 	}
 
 	public void RemoveBodyBall(BodyBall bodyBall)
@@ -208,7 +223,6 @@ public class GameManager : MonoBehaviour
 
 		gamerData.RemoveRestBodyBall(index);
 		bodyBallController.ChangeBodyBallVisiable();
-		// ������Ч
 	}
 
 	private void LoadEngindData()
