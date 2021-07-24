@@ -43,7 +43,7 @@ public class GamerData
 
 	public void RemoveRestBodyBall(int index)
 	{
-		if (index == 0)
+		if (index == 0 || index == -1)
 			return;
 		while(BodyBallList.Count > index)
 		{
