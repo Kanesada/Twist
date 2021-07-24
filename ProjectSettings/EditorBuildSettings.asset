@@ -21,6 +21,12 @@ EditorBuildSettings:
     path: Assets/GameJam/Scenes/Option.unity
     guid: 2c83a4e728141004e8a4c221b7cb8906
   - enabled: 1
+    path: Assets/GameJam/Scenes/Test/Level2WithSpring.unity
+    guid: fb45e9c239286ce4fa0b441686e67fde
+  - enabled: 1
+    path: Assets/GameJam/Scenes/Test/Level1WithSpring.unity
+    guid: 8ecf77b561d9ab74c888dfe97708c863
+  - enabled: 1
     path: Assets/GameJam/Scenes/Level1WithPic.unity
     guid: b40fca98372f3874c9522212310e335f
   - enabled: 1

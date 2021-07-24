@@ -50,6 +50,8 @@ public class SpringBodyBall : MonoBehaviour
 		{
 			var itemBall = collision.GetComponent<ItemBall>();
 			var type = itemBall.ballType;
+			Destroy(collision.gameObject);
+
 			GameManager.Instance.AddSpringBodyBall(type);
 		}
 	}

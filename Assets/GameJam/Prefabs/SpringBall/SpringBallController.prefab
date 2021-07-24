@@ -7,7 +7,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7646805157318426015}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01d17d850b34b964da05fe455f5b93e7, type: 3}
   m_Name: 
@@ -127,6 +127,10 @@ PrefabInstance:
     - target: {fileID: 2021299314418431059, guid: 21dd53a914242fe4fa3596912a9cc05a, type: 3}
       propertyPath: m_Name
       value: SpringBodyBall
+      objectReference: {fileID: 0}
+    - target: {fileID: 2021299314418431059, guid: 21dd53a914242fe4fa3596912a9cc05a, type: 3}
+      propertyPath: m_TagString
+      value: HeadBall
       objectReference: {fileID: 0}
     - target: {fileID: 7800644803803279005, guid: 21dd53a914242fe4fa3596912a9cc05a, type: 3}
       propertyPath: m_Sprite

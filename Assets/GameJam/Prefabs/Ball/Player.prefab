@@ -135,12 +135,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 620a5a4a0e2f6744b8a7ce0f823e47b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MyInpulse: {fileID: 0}
   headerBall: {fileID: 0}
   moveSpeed: 10
   xVelocity: 0
   yVelocity: 0
   pullPressed: 0
-  pullForce: 50
+  pullForce: 15
   lineRenderer: {fileID: 4446732744575245167}
 --- !u!120 &4446732744575245167
 LineRenderer:

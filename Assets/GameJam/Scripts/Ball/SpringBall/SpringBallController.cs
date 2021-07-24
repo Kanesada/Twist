@@ -41,6 +41,9 @@ public class SpringBallController : MonoBehaviour
 	public void RemoveSpringBall(SpringBodyBall spring)
 	{
 		int i = 0;
+		if (springBalls.Contains(spring) == false)
+			return;
+
 		while(i < springBalls.Count)
 		{
 			var springBall = springBalls[i];
